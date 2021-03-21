@@ -1,15 +1,26 @@
 <template>
   <el-header class="header-wrapper">
     <el-col :span="4" class="header-item">
-      <el-dropdown>
-        <span class="el-dropdown-link">
-          王立品<i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
+      <el-dropdown class="el-dropdown-link">
+        <el-col>
+          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" @error="errorHandler">
+            <span>
+              <img
+                class="header-username-img"
+                src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+              />
+            </span>
+          </el-avatar>
+          <span>王立品</span>
+        </el-col>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item icon="el-icon-plus">个人中心</el-dropdown-item>
             <el-dropdown-item icon="el-icon-circle-plus">设置</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus-outline">退出</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-circle-plus">中英文切换</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-circle-plus-outline"
+              >退出</el-dropdown-item
+            >
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -18,11 +29,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'Header',
-  setup() {},
+  name: "Header",
+  setup() {
+    const errorHandler = () => {
+      return false;
+    };
+    return {
+      errorHandler,
+    };
+  },
 });
 </script>
 
@@ -36,6 +54,12 @@ export default defineComponent({
   padding: 0 10px 0 10px;
   .header-item {
     line-height: 50px;
+    .header-username-img {
+      width: 25px;
+      vertical-align: middle;
+      border-radius: 50%;
+      padding: 0 5px;
+    }
   }
   .el-dropdown-link {
     cursor: pointer;

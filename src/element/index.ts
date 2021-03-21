@@ -1,12 +1,15 @@
 import {
   ElAside,
+  ElAvatar,
   ElButton,
+  ElCol,
   ElContainer,
   ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
   ElForm,
   ElFormItem,
+  ElHeader,
   ElInput,
   ElMenu,
   ElMenuItem,
@@ -17,6 +20,7 @@ import {
   ElSubmenu
 } from 'element-plus';
 const Element: Array<object> = [
+  ElHeader,
   ElButton,
   ElForm,
   ElFormItem,
@@ -32,7 +36,9 @@ const Element: Array<object> = [
   ElRadioButton,
   ElDropdown,
   ElDropdownMenu,
-  ElDropdownItem
+  ElDropdownItem,
+  ElCol,
+  ElAvatar
 ]
 const EleUse = (app: any) => {
   Element.forEach((item: Object) => {

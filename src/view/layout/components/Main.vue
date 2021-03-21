@@ -1,5 +1,7 @@
 <template>
-  <el-main style="background: pink;margin: 20px 10px 10px 10px;">内容</el-main>
+  <el-main style="background: pink;margin: 20px 10px 10px 10px;">
+    <router-view></router-view>
+  </el-main>
 </template>
 
 <script lang="ts">
