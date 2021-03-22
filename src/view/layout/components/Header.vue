@@ -1,9 +1,9 @@
 <template>
   <el-header class="header-wrapper">
-    <el-col :span="4" class="header-item">
-      <el-dropdown class="el-dropdown-link">
-        <el-col>
-          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" @error="errorHandler">
+    <el-col :span="2" class="header-item">
+      <el-dropdown class="el-dropdown-link header-item">
+        <div>
+          <el-avatar src="https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png" @error="errorHandler">
             <span>
               <img
                 class="header-username-img"
@@ -12,7 +12,7 @@
             </span>
           </el-avatar>
           <span>王立品</span>
-        </el-col>
+        </div>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item icon="el-icon-plus">个人中心</el-dropdown-item>
@@ -48,7 +48,7 @@ export default defineComponent({
 .header-wrapper {
   display: flex;
   // align-items: center;
-  height: 50px;
+  height: 50px!important;
   background: #fff;
   justify-content: flex-end;
   padding: 0 10px 0 10px;
@@ -60,6 +60,12 @@ export default defineComponent({
       border-radius: 50%;
       padding: 0 5px;
     }
+  }
+  .el-avatar--large {
+    width: 26px !important;
+    height: 26px !important;
+    vertical-align: middle;
+    margin-right: 5px;
   }
   .el-dropdown-link {
     cursor: pointer;

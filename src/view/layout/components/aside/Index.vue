@@ -13,9 +13,8 @@
     >
       <el-menu-item index="0">
         <img
-          :class="[isCollapse ? 'logo' : '']"
           style="height: 30px"
-          srcset="../../../static/img/logo.9652507e.png"
+          srcset="../../../../static/img/logo.9652507e.png"
         />
         <span>后台管理系统</span>
       </el-menu-item>
@@ -24,18 +23,12 @@
           <!-- 一级菜单 -->
           <el-menu-item :index="item.path" v-if="!item.children">
             <i class="el-icon-menu"></i>
-            <template #title>{{ item.meta && item.meta.title }}</template>
-          </el-menu-item>
-          <!-- 二级菜单 -->
-          <el-submenu :index="item.children.path" v-else>
             <template #title>
-              <i class="el-icon-location"></i>
-              <span>{{ item.meta && item.meta.title }}</span>
+              <router-link :to="item.path" tag="li">{{ item.meta && item.meta.title }}</router-link>
             </template>
-            <el-menu-item-group v-for="children in item.children" :key="children.path">
-              <el-menu-item :index="children.path">{{ children.meta && children.meta.title }}</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
+          </el-menu-item>
+          <!-- 二级菜单 支持递归无限级层级-->
+          <Main v-else :menu="item" :key="item.path"></Main>
         </template>
       </template>
     </el-menu>
@@ -45,24 +38,26 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import Main from './Menu.vue'
 
 export default defineComponent({
   name: "Aside",
   props: ["isCollapse"],
+  components: { Main },
   setup() {
     const { options } = useRouter();
     const routers = options.routes;
     console.log(routers);
     const handleOpen = () => {
-      console.log('222')
-    }
+      console.log("222");
+    };
     const handleClose = () => {
-      console.log('3333')
-    }
+      console.log("3333");
+    };
     return {
       routers,
       handleOpen,
-      handleClose
+      handleClose,
     };
   },
 });

@@ -1,6 +1,8 @@
 import {
   ElAside,
   ElAvatar,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
   ElButton,
   ElCol,
   ElContainer,
@@ -11,7 +13,8 @@ import {
   ElFormItem,
   ElHeader,
   ElInput,
-  ElMenu,
+  ElMain, ElMenu,
+
   ElMenuItem,
   ElMenuItemGroup,
   ElRadioButton,
@@ -20,6 +23,7 @@ import {
   ElSubmenu
 } from 'element-plus';
 const Element: Array<object> = [
+  ElMain,
   ElHeader,
   ElButton,
   ElForm,
@@ -38,7 +42,9 @@ const Element: Array<object> = [
   ElDropdownMenu,
   ElDropdownItem,
   ElCol,
-  ElAvatar
+  ElAvatar,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 ]
 const EleUse = (app: any) => {
   Element.forEach((item: Object) => {

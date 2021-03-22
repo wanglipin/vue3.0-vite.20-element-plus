@@ -34,7 +34,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '选项1'
         },
-        component: () => import('@/view/uses/index.vue')
+        component: () => import('@/view/uses/index.vue'),
       },
       {
         path: '/User2',
