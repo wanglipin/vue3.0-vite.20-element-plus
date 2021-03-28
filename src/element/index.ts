@@ -13,10 +13,11 @@ import {
   ElFormItem,
   ElHeader,
   ElInput,
-  ElMain, ElMenu,
-
+  ElMain,
+  ElMenu,
   ElMenuItem,
   ElMenuItemGroup,
+  ElMessage,
   ElRadioButton,
   ElRadioGroup,
   ElSelect,
@@ -24,6 +25,7 @@ import {
 } from 'element-plus';
 const Element: Array<object> = [
   ElMain,
+  ElMessage,
   ElHeader,
   ElButton,
   ElForm,

@@ -1,3 +1,3 @@
 <template>
-  <div>选项2</div>
+  <div>导航2</div>
 </template>

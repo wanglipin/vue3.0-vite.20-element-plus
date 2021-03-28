@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
+const Layout = () => import('@/view/layout/Index.vue')
+const App = () => import('@/view/layout/App.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,24 +14,25 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/view/login/Login.vue')
   },
   {
-    path: '/Index',
-    name: 'Index',
+    path: '/Home',
+    name: 'Home',
     meta: {
       title: '全部'
     },
     hidden: true,
-    component: () => import('@/view/layout/Index.vue')
+    component: Layout
   },
   {
     path: '/UserManagement',
     name: 'UserManagement',
     redirect: '/UserManagement/User1',
+    component: Layout,
     meta: {
       title: '导航1'
     },
     children: [
       {
-        path: '/User1',
+        path: '/UserManagement/User1',
         name: 'User1',
         meta: {
           title: '选项1'
@@ -37,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/view/uses/index.vue'),
       },
       {
-        path: '/User2',
+        path: '/UserManagement/User2',
         name: 'User2',
         meta: {
           title: '选项2'
@@ -49,40 +52,24 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/navigation2',
     name: 'navigation2',
-    component: () => import('@/view/uses/index2.vue'),
-    meta: {
-      title: '导航2'
-    }
-  },
-  {
-    path: '/navigation3',
-    name: 'navigation3',
-    component: () => import('@/view/uses/index3.vue'),
-    meta: {
-      title: '导航3'
-    },
-  },
-  {
-    path: '/navigation4',
-    name: 'navigation4',
-    redirect: '/navigation4/Nav4',
-    component: () => import('@/view/uses/index4.vue'),
-    meta: {
-      title: '导航4'
-    }
-  },
-  {
-    path: '/navigation5',
-    name: 'navigation5',
-    component: () => import('@/view/uses/index5.vue'),
-    meta: {
-      title: '导航5'
-    },
+    component: Layout,
+    children: [
+      {
+        path: '/navigation2',
+        name: 'nav2',
+        component: () => import('@/view/uses/index3.vue'),
+        meta: {
+          title: '导航2'
+        }
+      }
+    ]
   }
 ]
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  linkActiveClass: 'is-active',  //TODO 这个是可以设置全局router菜单栏颜色
+  routes,
+  scrollBehavior: () => ({ left: 0, top: 0 }),
 })
 
 export default router

@@ -1,0 +1,27 @@
+# “EditorConfig帮助开发人员在不同的编辑器和IDE之间定义和维护一致的编码样式
+
+
+# 告诉EditorConfig插件，这是根文件，不用继续往上查找
+root = true
+
+[*]
+# 设置字符集
+charset=utf-8
+# 结尾换行符，可选"lf"、"cr"、"crlf"
+end_of_line=lf
+insert_final_newline=true
+# 缩进风格，可选"space"、"tab
+indent_style=space
+indent_size=2
+max_line_length = 100
+
+# 匹配yml.YAML,JSON结尾的文件
+[*.{yml,yaml,json}]
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab

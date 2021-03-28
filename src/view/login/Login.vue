@@ -2,7 +2,9 @@
   <div class="login-wrapper">
     <el-form :model="ruleForm" status-icon ref="ruleFormRef" label-width="0px" class="login-ruleForm">
       <el-form-item prop="username">
-        <label>用户名</label>
+        <label>用户名
+          
+        </label>
         <el-input  type="text" size="small" prefix-icon="el-icon-user" v-model="ruleForm.username" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item prop="pass">
@@ -21,6 +23,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from 'vue'
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus'
 
 export default defineComponent({
   name: 'Login',
@@ -28,6 +32,7 @@ export default defineComponent({
     // HelloWorld
   },
   setup() {
+    const router = useRouter();
     const ruleFormRef = ref<string>()
     const data = reactive<any>({
       ruleForm: {
@@ -36,8 +41,12 @@ export default defineComponent({
       }
     })
     const onSubmit = () => {
-      console.log('用户名：'+ data.ruleForm.username, '密码：'+ data.ruleForm.pass)
-
+      if (data.ruleForm.username === 'wanglipin' && data.ruleForm.pass === '123456') {
+        console.log(1123456789);
+        router.push({ name: 'Home' })
+      } else {
+        ElMessage.error('账号密码错误.......');
+      }
     }
     return {
       ruleFormRef,

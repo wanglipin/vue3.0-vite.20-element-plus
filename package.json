@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "elint \"src/**/*.{js,vue}\"",
+    "format": "onchange 'test/**/*.js' 'src/**/*.js' 'src/**/*.vue' -- prettier --write {{changed}}"
   },
   "dependencies": {
     "element-plus": "1.0.2-beta.35",

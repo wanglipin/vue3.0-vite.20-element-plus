@@ -3,14 +3,13 @@
     <el-radio-group
       v-model="isCollapse"
       @change="handleManucLosed"
-      style="margin-bottom: 20px"
     >
       <el-radio-button :label="false">展开</el-radio-button>
       <el-radio-button :label="true">收起</el-radio-button>
     </el-radio-group>
     <el-container class="layout-view">
       <LayoutAside :isCollapse="isCollapse" />
-      <el-container style="flex-direction: column">
+      <el-container class="layout-main-container" style="flex-direction: column">
         <LatoutHeader />
         <div>
           <el-breadcrumb separator="/">
@@ -40,8 +39,6 @@ export default defineComponent({
     const data = reactive({
       isCollapse: false,
     });
-    const { ctx } = getCurrentInstance();
-    console.log(ctx.$router.currentRoute.value);
     const handleManucLosed = () => {};
     return {
       handleManucLosed,
@@ -53,24 +50,29 @@ export default defineComponent({
 
 <style lang="scss">
 .layout-view {
+  position: relative;
   width: 100%;
   height: 100vh;
+  transition: width .28s;
   overflow-y: scroll;
   position: fixed;
   background: #f0f2f5;
+  .layout-main-container {
+    margin-left: 256px;
+    transition: margin .28s;
+  }
 }
-// 菜单栏设置背景色
-.el-menu-item {
+.el-menu-item > a {
   color: rgba(254, 254, 254, 0.65);
-  background: #032121;
 }
 // 菜单栏选中背景色
 .layout-asid .el-menu-item.is-active {
-  background-color: #13c2c2 !important;
+  // background-color: #13c2c2 !important;
 }
 // 菜单栏鼠标滑过背景色
 .el-menu-item:hover {
   background-color: none;
+  color: #fefefe!important;
 }
 .el-dropdown-menu,
 .el-menu {
@@ -85,13 +87,16 @@ export default defineComponent({
   width: 256px;
 }
 .layout-asido {
-  background: #032121;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   transition: all 0.25s;
 }
 .layout-asids {
   width: 65px;
   max-width: 65px;
   min-width: 65px;
-  // transition: all 0.5s;
 }
 </style>
