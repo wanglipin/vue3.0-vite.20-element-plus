@@ -7,19 +7,39 @@
       <el-radio-button :label="false">展开</el-radio-button>
       <el-radio-button :label="true">收起</el-radio-button>
     </el-radio-group>
-    <el-container class="layout-view">
-      <LayoutAside :isCollapse="isCollapse" />
-      <el-container class="layout-main-container" style="flex-direction: column">
-        <LatoutHeader />
-        <div>
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-            <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-          </el-breadcrumb>
-        </div>
-        <LatoutMain />
+    <el-container class="sider-container">
+      <LayoutAside :isCollapse="isCollapse"></LayoutAside>
+      <el-container>
+          <LatoutHeader class="common-header">
+            <el-col class="menu-open-icon">
+              <i class="el-icon-s-fold"></i>
+            </el-col>
+            <el-col class="header-item">
+              <el-dropdown class="el-dropdown-link header-item">
+                <div class="header-username">
+                  <el-avatar src="https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png" @error="errorHandler">
+                    <span>
+                      <img
+                        class="header-username-img"
+                        src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+                      />
+                    </span>
+                  </el-avatar>
+                  <span>王立品</span>
+                </div>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item icon="el-icon-plus">个人中心</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus">设置</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus-outline"
+                      >退出</el-dropdown-item
+                    >
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+            </el-col>
+          </LatoutHeader>
+          <el-main>Main</el-main>
       </el-container>
     </el-container>
   </div>
@@ -37,7 +57,7 @@ export default defineComponent({
   components: { LatoutHeader, LayoutAside, LatoutMain },
   setup(props) {
     const data = reactive({
-      isCollapse: false,
+      isCollapse: true,
     });
     const handleManucLosed = () => {};
     return {
@@ -49,54 +69,46 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.layout-view {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  transition: width .28s;
-  overflow-y: scroll;
-  position: fixed;
-  background: #f0f2f5;
-  .layout-main-container {
-    margin-left: 256px;
-    transition: margin .28s;
+@import '../../styles/layout.scss';
+  .common-header {
+    background-color: red;
+    .menu-open-icon {
+      height: 100%;
+      line-height: 60px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .header-item {
+      float: right;
+      .header-username {
+        line-height: 60px;
+        span {
+          vertical-align: middle;
+          margin-right: 10px;
+          cursor: pointer;
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
   }
-}
-.el-menu-item > a {
-  color: rgba(254, 254, 254, 0.65);
-}
-// 菜单栏选中背景色
-.layout-asid .el-menu-item.is-active {
-  // background-color: #13c2c2 !important;
-}
-// 菜单栏鼠标滑过背景色
-.el-menu-item:hover {
-  background-color: none;
-  color: #fefefe!important;
-}
-.el-dropdown-menu,
-.el-menu {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: 0;
-}
-.layout-asid {
-  max-width: 256px;
-  min-width: 256px;
-  width: 256px;
-}
-.layout-asido {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  transition: all 0.25s;
-}
-.layout-asids {
-  width: 65px;
-  max-width: 65px;
-  min-width: 65px;
-}
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }   
 </style>

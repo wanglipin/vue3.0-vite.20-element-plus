@@ -1,7 +1,5 @@
 <template>
-	<el-aside
-		:class="['layout-asido', isCollapse ? 'layout-asids' : 'layout-asid']"
-	>
+	<el-aside :class="['aside-container']" :width="isCollapse ? '65px' : '260px'">
 		<el-menu
 			background-color="#032121"
 			class="el-menu-vertical-demo p-menu-drk"
@@ -11,6 +9,9 @@
 			@close="handleClose"
 			:router="true"
 			:collapse="isCollapse"
+      collapse-transition="false"
+      unique-opened="true"
+      default-active="activeData"
 		>
 			<div class="logo">
 				<img srcset="../../../../static/img/logo.9652507e.png" />
@@ -19,16 +20,6 @@
 			<template v-for="item in routers" :key="item.path">
 				<template v-if="!item.hidden">
 					<!-- 一级菜单 -->
-					<!-- <router-link :to="item.path" v-if="!item.children">
-            <el-menu-item :index="item.path">
-              <i class="el-icon-menu"></i>
-              <template #title>
-                <span>
-                  {{ item.meta && item.meta.title }}
-                </span>
-              </template>
-            </el-menu-item>
-          </router-link> -->
 					<el-menu-item
 						:index="singleChild.path"
 						:route="singleChild.path"
@@ -63,7 +54,8 @@ export default defineComponent({
 		const routers = options.routes;
 		console.log(routers, '??????????');
 		const data = reactive({
-			singleChild: {}
+			singleChild: {},
+      activeData: []
 		});
 		const handleOpen = () => {
 			console.log('222');
@@ -72,7 +64,7 @@ export default defineComponent({
 			console.log('3333');
 		};
 		// 如果菜单栏只有一项则处理
-		const hasOneChild = (children, item) => {
+		const hasOneChild = (children:any, item:any) => {
 			if (children.length === 1) {
 				data.singleChild = children[0];
 				return true;
@@ -92,23 +84,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.logo {
-	height: 56px;
-	padding: 0 16px;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
-	line-height: 56px;
-  cursor: pointer;
-	img {
-		width: 32px;
-		vertical-align: middle;
-	}
-	.name {
-		color: #fefefe;
-		font-size: 20px;
-		margin: 0 0 0 12px;
-		display: inline-block;
-		vertical-align: middle;
-	}
-}
+
 </style>
