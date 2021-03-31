@@ -6,10 +6,18 @@
     height: 100%;
     position: fixed;
     left: 0;
-    top: 100px;
+    top: 0;
     .common-header {
       width: 100%;
       height: 60px!important;
+    }
+    .main-container {
+      background: #f0f2f5!important;
+      color: black;
+      flex-flow: column;
+      .custom-scrollbar {
+        background: cadetblue;
+      }
     }
     .aside-container {
       transition: width 0.28s;

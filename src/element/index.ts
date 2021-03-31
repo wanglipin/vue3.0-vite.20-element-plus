@@ -20,12 +20,15 @@ import {
   ElMessage,
   ElRadioButton,
   ElRadioGroup,
-  ElSelect,
+
+
+  ElScrollbar, ElSelect,
   ElSubmenu
 } from 'element-plus';
 const Element: Array<object> = [
   ElMain,
   ElMessage,
+  ElScrollbar,
   ElHeader,
   ElButton,
   ElForm,

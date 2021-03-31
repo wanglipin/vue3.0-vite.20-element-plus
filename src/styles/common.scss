@@ -1,0 +1,14 @@
+// 清除浮动，兼容性最好的
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";    /*不用有内容也可以*/
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
