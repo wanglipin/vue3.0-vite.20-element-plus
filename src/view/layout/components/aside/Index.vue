@@ -9,8 +9,8 @@
 			@close="handleClose"
 			:router="true"
 			:collapse="isCollapse"
-      collapse-transition="false"
-      unique-opened="true"
+      :collapse-transition="false"
+      :unique-opened="true"
       default-active="activeData"
 		>
 			<div class="logo">
@@ -37,6 +37,7 @@
 				</template>
 			</template>
 		</el-menu>
+    <slot></slot>
 	</el-aside>
 </template>
 
@@ -47,7 +48,11 @@ import Main from './Menu.vue';
 
 export default defineComponent({
 	name: 'Aside',
-	props: ['isCollapse'],
+  props: {
+    isCollapse: {
+      type: Boolean,
+    }
+  },
 	components: { Main },
 	setup() {
 		const { options } = useRouter();

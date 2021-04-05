@@ -1,12 +1,91 @@
 .layout-wrapper {
   width: 100%;
   height: 100%;
+  position: relative;
   .sider-container {
     width: 100%;
     height: 100%;
     position: fixed;
     left: 0;
     top: 0;
+    .mask {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background-color: rgba(0,0,0,.15);
+      -webkit-transition: all .5s;
+      transition: all .5s;
+      z-index: 100;
+    }
+    .setting-container {
+      // right: 0;
+      top: 0;
+      position: fixed;
+      z-index: 101;
+      .setting-scrollbar {
+        height: 100vh;
+      }
+      .drawer-container {
+        width: 340px;
+        height: 100vh;
+        min-height: 100%;
+        background-color: #fff;
+        word-wrap: break-word;
+        color: #72767b;
+        .drawer-title {
+          align-items: center;
+          display: flex;
+          padding: 20px 20px 0;
+          >:first-child { //获取drawer-title里的第一个标签 
+            flex: 1;
+          }
+          .drawer__close-btn_default {
+            .drawer__close-btn {
+              border: none;
+              cursor: pointer;
+              font-size: 20px;
+              color: inherit;
+              background-color: transparent;
+            }
+          }
+        }
+        .drawer-body {
+          flex: 1;
+          padding: 20px;
+        }
+      }
+    }
+    .open {
+      right: 0;
+      transition: right .2s;
+      -moz-transition: right .2s; /* Firefox 4 */
+      -webkit-transition: right .5s; /* Safari and Chrome */
+      -o-transition: right .5s; /* Opera */
+    }
+    .close {
+      right: -340px;
+      transition: right .5s;
+      -moz-transition: right .5s; /* Firefox 4 */
+      -webkit-transition: right .5s; /* Safari and Chrome */
+      -o-transition: right .5s; /* Opera */
+    }
+    .setting {
+      background-color: #13c2c2;
+      color: #fff;
+      border-radius: 5px 0 0 5px;
+      line-height: 40px;
+      font-size: 22px;
+      width: 40px;
+      height: 40px;
+      z-index: 100;
+      text-align: center;
+      left: -40px;
+      cursor: pointer;
+      position: absolute;
+      top: 120px;
+    }
     .common-header {
       width: 100%;
       height: 60px!important;
@@ -16,7 +95,7 @@
       color: black;
       flex-flow: column;
       .custom-scrollbar {
-        background: cadetblue;
+        // background: cadetblue;
       }
     }
     .aside-container {

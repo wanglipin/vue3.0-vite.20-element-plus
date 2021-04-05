@@ -4,9 +4,55 @@ import {
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElButton,
-  ElCol,
+
+
+  ElCard,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ElCheckbox, ElCol,
   ElContainer,
-  ElDropdown,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ElDrawer, ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
   ElForm,
@@ -18,15 +64,31 @@ import {
   ElMenuItem,
   ElMenuItemGroup,
   ElMessage,
-  ElRadioButton,
+
+
+  ElMessageBox, ElRadioButton,
   ElRadioGroup,
 
 
   ElScrollbar, ElSelect,
-  ElSubmenu
+  ElSubmenu, ElTable,
+  ElTableColumn,
+
+
+
+
+
+  ElTag
 } from 'element-plus';
 const Element: Array<object> = [
   ElMain,
+  ElDrawer,
+  ElMessageBox,
+  ElCard,
+  ElTag,
+  ElTable,
+  ElTableColumn,
+  ElCheckbox,
   ElMessage,
   ElScrollbar,
   ElHeader,

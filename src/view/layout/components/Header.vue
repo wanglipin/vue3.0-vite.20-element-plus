@@ -1,7 +1,7 @@
 <template>
   <el-header class="common-header">
     <el-col class="menu-open-icon">
-      <i class="el-icon-s-fold"></i>
+      <i class="el-icon-s-fold" @click.native="toggleSideBar"></i>
     </el-col>
     <el-col class="header-item">
       <el-dropdown class="el-dropdown-link header-item">
@@ -35,12 +35,22 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Header",
-  setup() {
+  props: {
+    isCollapse: {
+      type: Boolean,
+    }
+  },
+  emits: ['toggleSideBar'],
+  setup(props, { attrs, emit, slots}) {
     const errorHandler = () => {
       return false;
     };
+    const toggleSideBar = () => {
+      emit('toggleSideBar')
+    }
     return {
       errorHandler,
+      toggleSideBar
     };
   },
 });

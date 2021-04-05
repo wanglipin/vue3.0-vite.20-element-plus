@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "elint \"src/**/*.{js,vue}\"",
+    "lint": "eslint \"src/**/*.{js,vue}\"",
     "format": "onchange 'test/**/*.js' 'src/**/*.js' 'src/**/*.vue' -- prettier --write {{changed}}"
   },
   "dependencies": {
