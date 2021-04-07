@@ -1,29 +1,33 @@
 <template>
 	<el-card class="box-card">
-		<div style="margin-left: 10px" v-if="tags.length > 0">
-			<el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type">
+    <!-- <div>{{tagname}}</div> -->
+		<div style="margin-left: 10px">
+			<el-tag
+				v-for="(tag, index) in tags"
+				:key="tag.name"
+				closable
+				:type="tag.type"
+				@close="handleClose(tag, index)"
+			>
 				{{ tag.name }}
 			</el-tag>
 		</div>
 		<el-table
-    :data="tableData"
-    style="width: 100%"
-    row-key="id"
-    border
-    lazy
-    :load="load"
-    :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+			:data="tableData"
+			style="width: 100%"
+			row-key="id"
+			border
+		>
 			<el-table-column width="500">
-				<template v-slot="{ row, column, $index }">
-					<el-checkbox v-model="row.checked" @change="handleCheckbox(row)">
-						<span style="margin-left: 10px">{{ row.date }}</span>
+				<template v-slot="{ row }">
+					<el-checkbox v-model="row.checked" @change="handleCheckbox(row)" v-if="row.hasOwnProperty('checked')">
+            {{ row.date }}
 					</el-checkbox>
-          <!-- <span v-else style="margin-left: 10px">{{ row.date }}</span> -->
+          <span v-else>{{ row.date }}</span>
 				</template>
 			</el-table-column>
 			<el-table-column prop="name" label="姓名" sortable width="180">
 			</el-table-column>
-			<el-table-column prop="address" label="地址"> </el-table-column>
 		</el-table>
 	</el-card>
 </template>
@@ -35,73 +39,103 @@ interface tableType {
 	id: string | number;
 	name: string;
 	date: string;
-	children: any;
+	children?: any;
 	address: string;
 }
 export default defineComponent({
 	name: '',
-	setup() {
-    const handleCheckbox = (obj: any) => {
-      console.log(obj)
-    }
-    const load = (tree, treeNode, resolve) => {
-        setTimeout(() => {
-          resolve([
-            {
-              id: 31,
-              date: '2016-05-01',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-              id: 32,
-              date: '2016-05-01',
-              name: '王小虎',
-              address: '上海市普陀区金沙江路 1519 弄'
-            }
-          ])
-        }, 1000)
+  computed: {
+    tagname ({tags}) {
+      tags.forEach(item => {
+        
+      });
+      console.log('1111')
+      return 1
+    },
+    checked ({listId}) {
+      console.log(listId)
+      return function (id) {
+        return listId.includes(id)
       }
-		const data = reactive<Array<tableType>>({
+    }
+  },
+	setup() {
+		const data = reactive({
 			tableData: [
 				{
 					id: 1,
-          checked: true,
 					date: '2016-05-02',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1518 弄'
+					name: '小七',
+          
 				},
 				{
 					id: 2,
 					date: '2016-05-04',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1517 弄'
+					name: '小八',
 				},
 				{
 					id: 3,
 					date: '2016-05-01',
 					name: '王小虎',
-					address: '上海市普陀区金沙江路 1519 弄',
-          hasChildren: true,
+          children: [
+            {
+              id: 31,
+              date: '2016-05-01',
+              name: '王立品',
+              checked: false,
+            },
+            {
+              id: 32,
+              date: '2016-05-01',
+              name: '陈曦',
+              checked: false,
+            }
+          ]
 				},
 				{
 					id: 4,
 					date: '2016-05-03',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1516 弄'
+					name: '小九',
+					address: '上海市普陀区金沙江路 1516 弄',
 				}
 			],
-			tags: [
-				{ name: '标签一'},
-				{ name: '标签二'},
-				{ name: '标签三'},
-				{ name: '标签四'},
-				{ name: '标签五'}
-			]
-    })
+      tags: [],
+      listId: []
+		});
+		const handleCheckbox = (obj: any) => {
+      const index = data.listId.indexOf(obj.id)
+      if (index > -1) {
+        data.tags.splice(data.listId.indexOf(obj.id), 1) // 删除当前点击项
+        data.listId.splice(data.listId.indexOf(obj.id), 1)
+      } else {
+        data.tags.push(obj)
+        data.listId.push(obj.id)
+      }
+		};
+    const handleClose = (tag: number, index: number) => {
+      data.tags.splice(index, 1) // 删除当前点击项
+      data.listId.splice(index, 1)
+      data.tableData.forEach(item => {
+        if(item.children?.length) {
+          recursive(item.children, tag)
+        }
+      })
+    }
+    // 递归调用
+    const recursive = (children: any, tag: any) => {
+      children.forEach(item => {
+        if (item.id == tag.id) {
+          item.checked = false
+        }
+        if (item.children?.length) {
+          recursive(item.children, tag)
+        }
+      });
+    }
 		return {
 			...toRefs(data),
-      handleCheckbox,
-      load
+			handleCheckbox,
+      handleClose
 		};
 	}
 });
