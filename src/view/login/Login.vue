@@ -42,7 +42,6 @@ export default defineComponent({
     })
     const onSubmit = () => {
       if (data.ruleForm.username === 'wanglipin' && data.ruleForm.pass === '123456') {
-        console.log(1123456789);
         router.push({ name: 'Home' })
       } else {
         ElMessage.error('账号密码错误.......');

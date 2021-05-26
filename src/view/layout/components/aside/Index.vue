@@ -11,11 +11,11 @@
 			:collapse="isCollapse"
       :collapse-transition="false"
       :unique-opened="true"
-      default-active="activeData"
+      :default-active="activeData"
 		>
 			<div class="logo">
 				<img srcset="../../../../static/img/logo.9652507e.png" />
-				<h1 class="name" v-if="!isCollapse">Vue3.0</h1>
+				<h1 class="name" v-if="!isCollapse">Vue3.0(TS)V1</h1>
 			</div>
 			<template v-for="item in routers" :key="item.path">
 				<template v-if="!item.hidden">
@@ -42,8 +42,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { defineComponent, reactive, toRefs, watch, onMounted } from 'vue';
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
 import Main from './Menu.vue';
 
 export default defineComponent({
@@ -56,11 +56,11 @@ export default defineComponent({
 	components: { Main },
 	setup() {
 		const { options } = useRouter();
+    const router = useRoute()
 		const routers = options.routes;
-		console.log(routers, '??????????');
 		const data = reactive({
 			singleChild: {},
-      activeData: []
+      activeData: ''
 		});
 		const handleOpen = () => {
 			console.log('222');
@@ -77,6 +77,18 @@ export default defineComponent({
 				return false;
 			}
 		};
+    // !用watch监听路由的办法
+    watch(() => router, () => {
+      // 确保刷新页面或者第一次登录页面让菜单栏高亮与路由对应
+      data.activeData = router.path
+    }, { 
+      deep:true,
+      immediate: true
+    })
+    /* 监听路由变化
+    onBeforeRouteUpdate(to => {
+      console.log(to, '!!!!!!!!!!')
+    })  */
 		return {
 			routers,
 			handleOpen,

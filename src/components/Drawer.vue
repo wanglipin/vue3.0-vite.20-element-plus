@@ -4,7 +4,7 @@
     <div :class="['setting-container', drawer ? 'open' : 'close']">
       <el-scrollbar class="setting-scrollbar">
         <div class="drawer-container">
-          <header class="drawer-title" v-if="withHeader">
+          <header class="drawer-title" v-if="withHeader && title">
             <span v-if="title" role="heading" :title="title">{{ title }}</span>
             <slot name="title"></slot>
             <div class="drawer__close-btn_default">

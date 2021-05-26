@@ -8,19 +8,14 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Login',
     hidden: true,
-    meta: {
-      title: '登录'
-    },
     component: () => import('@/view/login/Login.vue')
   },
   {
     path: '/Home',
     name: 'Home',
-    meta: {
-      title: '全部'
-    },
     hidden: true,
-    component: Layout
+    component: Layout,
+    redirect: '/UserManagement/User1',
   },
   {
     path: '/UserManagement',

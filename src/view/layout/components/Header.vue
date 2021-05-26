@@ -1,9 +1,9 @@
 <template>
   <el-header class="common-header">
-    <el-col class="menu-open-icon">
-      <i class="el-icon-s-fold" @click.native="toggleSideBar"></i>
-    </el-col>
-    <el-col class="header-item">
+    <div class="menu-open-icon">
+      <i class="el-icon-s-fold" :class="haderToggleSideBar" style="padding:0 10px;" @click="toggleSideBar"></i>
+    </div>
+    <div class="header-item">
       <el-dropdown class="el-dropdown-link header-item">
         <div class="header-username">
           <el-avatar src="https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png" @error="errorHandler">
@@ -26,12 +26,12 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-    </el-col>
+    </div>
   </el-header>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive, toRefs } from "vue";
 
 export default defineComponent({
   name: "Header",
@@ -42,13 +42,20 @@ export default defineComponent({
   },
   emits: ['toggleSideBar'],
   setup(props, { attrs, emit, slots}) {
+    const data = reactive({
+      haderToggleSideBar: {
+        iconeLeft: true 
+      }
+    })
     const errorHandler = () => {
       return false;
     };
     const toggleSideBar = () => {
+      data.haderToggleSideBar.iconeLeft = !data.haderToggleSideBar.iconeLeft
       emit('toggleSideBar')
     }
     return {
+      ...toRefs(data),
       errorHandler,
       toggleSideBar
     };
@@ -58,20 +65,26 @@ export default defineComponent({
 
 <style lang="scss">
 .common-header {
+  display: flex;
   background: #fff;
-  // overflow: hidden;
-  flex-flow: column;
-  flex-wrap: wrap;
+  padding: 0;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 60px;
   .menu-open-icon {
     height: 100%;
-    line-height: 60px;
-    font-size: 20px;
+    align-items: center;
+    font-size: 26px;
     cursor: pointer;
+    .iconeLeft {
+      transform: rotate(180deg);
+    }
   }
   .header-item {
-    float: right;
+    // line-height: 60px;
+    min-width: 180px;
+    align-items: center;
     .header-username {
-      line-height: 60px;
       span {
         vertical-align: middle;
         margin-right: 10px;

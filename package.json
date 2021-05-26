@@ -9,6 +9,7 @@
     "format": "onchange 'test/**/*.js' 'src/**/*.js' 'src/**/*.vue' -- prettier --write {{changed}}"
   },
   "dependencies": {
+    "@antv/x6": "^1.18.4",
     "element-plus": "1.0.2-beta.35",
     "vue": "^3.0.5",
     "vue-i18n": "^9.0.0",
