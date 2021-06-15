@@ -1,6 +1,7 @@
 <template>
 	<el-card class="box-card">
     <!-- <div>{{tagname}}</div> -->
+    <svg-icon name="Dashboard" size="16" />
 		<div style="margin-left: 10px">
 			<el-tag
 				v-for="(tag, index) in tags"

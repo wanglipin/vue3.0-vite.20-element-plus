@@ -1,3 +1,6 @@
 <template>
-  <div style="height: 2000px;background: pink;">单个菜单栏。。。。。</div>
+  <img style="width:100%" src="../../../public/img/zichantongjibaobiao.png" />
 </template>
+
+<style scoped>
+</style>

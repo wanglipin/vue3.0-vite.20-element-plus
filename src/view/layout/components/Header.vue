@@ -4,28 +4,43 @@
       <i class="el-icon-s-fold" :class="haderToggleSideBar" style="padding:0 10px;" @click="toggleSideBar"></i>
     </div>
     <div class="header-item">
-      <el-dropdown class="el-dropdown-link header-item">
-        <div class="header-username">
-          <el-avatar src="https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png" @error="errorHandler">
-            <span>
-              <img
-                class="header-username-img"
-                src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
-              />
-            </span>
-          </el-avatar>
-          <span>王立品</span>
-        </div>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item icon="el-icon-plus">个人中心</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus">设置</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-circle-plus-outline"
-              >退出</el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <div class="header-item-icon">
+        <el-dropdown class="demonstration">
+          <span class="el-dropdown-link">
+            <i class="el-icon-ice-cream-round"></i>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="a">简体中文</el-dropdown-item>
+              <el-dropdown-item command="b">English</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+      <div class="header-item-icon">
+        <el-dropdown class="el-dropdown-link header-item">
+          <div class="header-username">
+            <el-avatar src="https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png" @error="errorHandler">
+              <span>
+                <img
+                  class="header-username-img"
+                  src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+                />
+              </span>
+            </el-avatar>
+            <span>王立品</span>
+          </div>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item icon="el-icon-plus">个人中心</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-circle-plus">设置</el-dropdown-item>
+              <el-dropdown-item icon="el-icon-circle-plus-outline"
+                >退出</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
     </div>
   </el-header>
 </template>
@@ -82,8 +97,12 @@ export default defineComponent({
   }
   .header-item {
     // line-height: 60px;
+    display: flex;
     min-width: 180px;
     align-items: center;
+    .header-item-icon {
+      padding: 0 10px;
+    }
     .header-username {
       span {
         vertical-align: middle;

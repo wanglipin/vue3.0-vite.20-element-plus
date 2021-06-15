@@ -26,12 +26,12 @@ export default defineComponent({
     menu: {
       type: Object,
       default: () => {
-        return {}
+        return []
       }
     }
   },
-  setup() {
-    
+  setup(parps) {
+    // console.log(parps.menu, 'menu')
   },
 })
 </script>

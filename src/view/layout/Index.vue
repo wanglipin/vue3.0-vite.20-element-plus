@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, computed } from 'vue';
+import { defineComponent, reactive, toRefs } from 'vue';
 import LayoutAside from './components/aside/Index.vue';
 import Header from './components/Header.vue';
 import LatoutMain from './components/Main.vue';

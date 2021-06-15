@@ -15,38 +15,62 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Home',
     hidden: true,
     component: Layout,
-    redirect: '/UserManagement/User1',
+    redirect: '/UserManagement/todo',
   },
   {
     path: '/UserManagement',
     name: 'UserManagement',
-    redirect: '/UserManagement/User1',
+    redirect: '/UserManagement/todo',
     component: Layout,
     meta: {
-      title: '导航1'
+      title: '导航1',
+      alwaysShow: true
     },
     children: [
       {
-        path: '/UserManagement/User1',
-        name: 'User1',
+        path: '/UserManagement/todo',
+        name: 'todo',
         meta: {
-          title: '选项1'
+          title: 'todo'
         },
-        component: () => import('@/view/uses/index.vue'),
+        component: () => import('@/view/todo/index.vue')
       },
       {
         path: '/UserManagement/User2',
         name: 'User2',
         meta: {
-          title: '选项2'
+          title: '编辑器'
         },
         component: () => import('@/view/uses/index2.vue')
       }
     ]
   },
   {
+    path: '/feat',
+    name: 'feat',
+    redirect: '/feat/icon',
+    component: Layout,
+    meta: {
+      title: '功能',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: '/feat/icon', 
+        name: 'icon',
+        meta: {
+          title: '图标'
+        },
+        component: () => import('@/view/icon/index.vue')
+      }
+    ]
+  },
+  {
     path: '/navigation2',
     name: 'navigation2',
+    meta: {
+      alwaysShow: false,
+    },
     component: Layout,
     children: [
       {
@@ -54,7 +78,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'nav2',
         component: () => import('@/view/uses/index3.vue'),
         meta: {
-          title: '导航2'
+          title: 'test-01'
         }
       }
     ]
@@ -64,7 +88,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   linkActiveClass: 'is-active',  //TODO 这个是可以设置全局router菜单栏颜色
   routes,
-  scrollBehavior: () => ({ left: 0, top: 0 }),
+  scrollBehavior: (to, from, savedPosition) => ({ left: 0, top: 0 }), // TODO 设置记录滚动条行为
 })
 
 export default router
