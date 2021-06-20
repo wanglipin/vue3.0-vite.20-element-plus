@@ -4,56 +4,11 @@ import {
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElButton,
-
-
   ElCard,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ElCheckbox, ElCol,
+  ElCheckbox, ElCheckTag, ElCol,
   ElContainer,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ElDrawer, ElDropdown,
+  ElDrawer,
+  ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
   ElForm,
@@ -65,51 +20,15 @@ import {
   ElMenuItem,
   ElMenuItemGroup,
   ElMessage,
-
-
-  ElMessageBox, ElRadioButton,
-  ElRadioGroup, ElRow,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  ElScrollbar, ElSelect,
-  ElSubmenu, ElTable,
+  ElMessageBox,
+  ElRadioButton,
+  ElRadioGroup,
+  ElRow,
+  ElScrollbar,
+  ElSelect,
+  ElSubmenu,
+  ElTable,
   ElTableColumn,
-
-
-
-
-
   ElTag
 } from 'element-plus';
 const Element: Array<object> = [
@@ -144,7 +63,8 @@ const Element: Array<object> = [
   ElRow,
   ElAvatar,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElCheckTag
 ]
 const EleUse = (app: any) => {
   Element.forEach((item: Object) => {
