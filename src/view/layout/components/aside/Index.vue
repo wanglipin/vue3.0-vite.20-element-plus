@@ -42,8 +42,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, watch, onMounted } from 'vue';
-import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
+import { defineComponent, reactive, toRefs, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import Main from './Menu.vue';
 
 export default defineComponent({
@@ -76,7 +76,6 @@ export default defineComponent({
 		// 如果菜单栏只有一项则处理
 		const hasOneChild = (children:any, item:any) => {
 			if (children.length == 1 && !item.meta.alwaysShow) {
-        console.log(item.meta, '??????', item)
 				data.singleChild = children[0];
 				return true;
 			}

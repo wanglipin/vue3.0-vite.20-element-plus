@@ -9,6 +9,7 @@
         <el-menu-item :index="item.path" v-if="!item.children" :route="item.path">
           <span>
             {{ item.meta && item.meta.title }}
+            {{item.path}}
           </span>
         </el-menu-item>
         <Menu v-else :menu="item" :key="item.path"></Menu>

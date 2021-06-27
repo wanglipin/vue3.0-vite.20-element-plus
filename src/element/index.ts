@@ -20,8 +20,7 @@ import {
   ElMenuItem,
   ElMenuItemGroup,
   ElMessage,
-  ElMessageBox,
-  ElRadioButton,
+  ElMessageBox, ElOption, ElRadioButton,
   ElRadioGroup,
   ElRow,
   ElScrollbar,
@@ -32,6 +31,7 @@ import {
   ElTag
 } from 'element-plus';
 const Element: Array<object> = [
+  ElOption,
   ElMain,
   ElDrawer,
   ElMessageBox,

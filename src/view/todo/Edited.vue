@@ -2,12 +2,12 @@
   <el-input
     :value="todoTitle"
     v-bind="$attrs"
-    @input="onIputChange"
+    @input="onIput"
   />
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'vue'
+import { defineComponent, getCurrentInstance, ref,onMounted } from 'vue'
 export default defineComponent ({
   name: 'Edited',
   props: {
@@ -18,12 +18,14 @@ export default defineComponent ({
   },
   emits: ['update: todoTitle'],
   setup(props, {emit}) {
-    const onIputChange = (val: any): void => {
-      console.log(val, '!!!!!!!!!!')
+    // const { ctx: _this }: any = getCurrentInstance()
+    const onIput = (val: string): void => {
       emit('update: todoTitle', val)
+      // _this.$forceUpdate()
     }
+    
     return {
-      onIputChange
+      onIput
     }
   }
 })

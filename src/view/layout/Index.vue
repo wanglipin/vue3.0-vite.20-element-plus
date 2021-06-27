@@ -95,7 +95,7 @@ export default defineComponent({
 		const settingHandle = () => {
       data.drawer = !data.drawer
     };
-    const handleClose = <T>() => {
+    const handleClose = () => {
       ElMessageBox.confirm('是否要关闭?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
