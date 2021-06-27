@@ -6,10 +6,9 @@
     </template>
     <template v-if="menu.children.length">
       <el-menu-item-group v-for="item in menu.children" :key="item.path">
-        <el-menu-item :index="item.path" v-if="!item.children" :route="item.path">
+        <el-menu-item :index="item.path" v-if="!item.children" :route="{path: item.path}">
           <span>
             {{ item.meta && item.meta.title }}
-            {{item.path}}
           </span>
         </el-menu-item>
         <Menu v-else :menu="item" :key="item.path"></Menu>
@@ -20,6 +19,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { resolvePath } from '@/utils/resolvePath'
 
 export default defineComponent({
   name: 'Menu',
@@ -31,8 +31,16 @@ export default defineComponent({
       }
     }
   },
-  setup(parps) {
-    // console.log(parps.menu, 'menu')
+  setup(props) {
+    const routerPath = (routePath: string):string => {
+      const fatherPath = props.menu.path
+      console.log(fatherPath)
+      // return resolvePath(fatherPath, routePath)
+      return '111'
+    }
+    return {
+      routerPath
+    }
   },
 })
 </script>

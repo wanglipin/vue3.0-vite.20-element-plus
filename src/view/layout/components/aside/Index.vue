@@ -22,7 +22,7 @@
 					<!-- 一级菜单 -->
 					<el-menu-item
 						:index="singleChild.path"
-						:route="singleChild.path"
+						:route="{path: singleChild.path}"
 						v-if="hasOneChild(item.children, item)"
 					>
 						<i class="el-icon-menu"></i>

@@ -5,14 +5,17 @@
     </div>
     <div class="header-item">
       <div class="header-item-icon">
-        <el-dropdown class="demonstration">
-          <span class="el-dropdown-link">
-            <i class="el-icon-ice-cream-round"></i>
+        <el-dropdown class="demonstration" @command="handleCommand">
+          <span class="el-dropdown-link cursor-pointer">
+            <svg-icon
+              name="zhongwenqiehuan-bai"
+              size="16"
+            />
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item command="a">简体中文</el-dropdown-item>
-              <el-dropdown-item command="b">English</el-dropdown-item>
+              <el-dropdown-item command="zh">简体中文</el-dropdown-item>
+              <el-dropdown-item command="en">English</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -69,10 +72,14 @@ export default defineComponent({
       data.haderToggleSideBar.iconeLeft = !data.haderToggleSideBar.iconeLeft
       emit('toggleSideBar')
     }
+    const handleCommand = (language: string) => {
+      console.log(language, '111111111')
+    }
     return {
       ...toRefs(data),
       errorHandler,
-      toggleSideBar
+      toggleSideBar,
+      handleCommand
     };
   },
 });
