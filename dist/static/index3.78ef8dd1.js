@@ -1,1 +1,1 @@
-import{a0 as a,a1 as s,o as t,c as e,w as o}from"./vendor.24be2225.js";const c={},d=o();a("data-v-a0badf2e");const n={style:{width:"100%"},src:"/static/zichantongjibaobiao.562ec0e7.png"};s();const i=d(((a,s)=>(t(),e("img",n))));c.render=i,c.__scopeId="data-v-a0badf2e";export default c;
+import{a0 as a,a1 as s,o as t,c as e,w as o}from"./vendor.24be2225.js";const c={},d=o();a("data-v-a0badf2e");const n={style:{width:"100%"},src:"./static/zichantongjibaobiao.562ec0e7.png"};s();const i=d(((a,s)=>(t(),e("img",n))));c.render=i,c.__scopeId="data-v-a0badf2e";export default c;
