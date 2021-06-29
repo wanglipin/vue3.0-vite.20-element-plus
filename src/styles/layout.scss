@@ -8,6 +8,9 @@
     position: fixed;
     left: 0;
     top: 0;
+    .aside-container-bar {
+      background-color: #032121;;
+    }
     .mask {
       position: fixed;
       left: 0;
@@ -20,7 +23,6 @@
       z-index: 100;
     }
     .setting-container {
-      // right: 0;
       top: 0;
       position: fixed;
       z-index: 101;
@@ -94,6 +96,10 @@
       background: #f0f2f5!important;
       color: black;
       flex-flow: column;
+      .view-container {
+        overflow: hidden;
+        padding: 0px 10px 10px 10px
+      }
       .custom-scrollbar {
         // background: cadetblue;
       }
@@ -104,7 +110,7 @@
       -moz-transition: width 0.28s;
       -webkit-transition: width 0.28s;
       -o-transition: width 0.28s;
-      background-color: #032121;
+      // background-color: #032121;
       .logo {
         height: 56px;
         padding: 0 16px;

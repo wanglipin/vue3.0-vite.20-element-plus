@@ -1,4 +1,5 @@
 <template>
+ <el-scrollbar class="aside-container-bar">
 	<el-aside :class="['aside-container']" :width="isCollapse ? '65px' : '260px'">
 		<el-menu
 			background-color="#032121"
@@ -39,6 +40,7 @@
 		</el-menu>
     <slot></slot>
 	</el-aside>
+ </el-scrollbar>
 </template>
 
 <script lang="ts">

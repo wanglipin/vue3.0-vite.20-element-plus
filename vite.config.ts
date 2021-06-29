@@ -1,3 +1,8 @@
+/*
+ * @Author: O_Pin
+ * @Date: 2021-06-29 10:38:53
+ * @LastEditTime: 2021-06-29 10:51:09
+ */
 import vue from '@vitejs/plugin-vue'
 // import vueJsx from '@vitejs/plugin-vue-jsx' // jsx插进
 import { resolve } from 'path'
@@ -5,7 +10,7 @@ import { defineConfig } from 'vite'
 import viteSvgIcons from 'vite-plugin-svg-icons' // 引入svgloader
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/',
   // optimizeDeps: {
   //   include: [''] // ?默认情况下，不在 node_modules 中的，链接的包不会被预构建。使用此选项可强制预构建链接的包。
   // },
@@ -28,7 +33,7 @@ export default defineConfig({
     })
   ],
   alias: {
-    '@/': resolve(__dirname, '.', 'src')
+    '@': resolve(__dirname, '.', 'src')
   },
   server: {
     // port: 6666,
