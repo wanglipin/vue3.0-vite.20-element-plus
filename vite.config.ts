@@ -1,15 +1,26 @@
+/*
+ * @Author: O_Pin
+ * @Date: 2021-06-29 10:38:53
+ * @LastEditTime: 2021-06-30 15:02:22
+ */
 import vue from '@vitejs/plugin-vue'
-// import vueJsx from '@vitejs/plugin-vue-jsx' // jsx插进
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import viteSvgIcons from 'vite-plugin-svg-icons' // 引入svgloader
 export default defineConfig({
-  base: './',
+  base: '/',
   // optimizeDeps: {
   //   include: [''] // ?默认情况下，不在 node_modules 中的，链接的包不会被预构建。使用此选项可强制预构建链接的包。
   // },
   resolve: { //? 导入文件时，可以忽略文件类型,下边类型是vite默认的设置
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json']
+  },
+  esbuild: { 
+    //todo 下面这些东西是如果用@vitejs/plugin-vue-jsx插件的话则不需要,如果使用@vue/babel-plugin-jsx插件则需要配置，而且在babel。config中配置@vue/babel-plugin-jsx
+    // jsxFactory: 'h', // 配置tsx
+    // jsxFragment: 'Fragment', // 配置jsx
+    // jsxInject: "import { h } from 'vue'" // 每个组件都自动引入
   },
   css: {
     preprocessorOptions: {
@@ -20,6 +31,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueJsx(),
     viteSvgIcons({
       // 配置路劲在你的src里的svg存放文件
       iconDirs: [resolve(process.cwd(), 'src/static/svg')],

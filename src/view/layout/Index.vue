@@ -28,7 +28,7 @@
       </Drawer>
 			<el-container class="main-container">
 				<Header :isCollapse="isCollapse" @toggleSideBar="toggleSideBar"></Header>
-				<el-main style="padding: 0px 10px 10px 10px">
+				<el-main class="view-container">
           <breadCrumbs></breadCrumbs>
 					<el-scrollbar
 						class="custom-scrollbar"

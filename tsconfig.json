@@ -4,7 +4,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "jsx": "preserve",
+    "jsx": "preserve", //todo 在.tsx文件里支持JSX
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,

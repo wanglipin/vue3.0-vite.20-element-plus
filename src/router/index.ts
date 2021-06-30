@@ -46,6 +46,34 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/table',
+    name: 'table',
+    redirect: '/table/dynameicTable',
+    component: Layout,
+    meta: {
+      title: 'table',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: '/table/dynameicTable', 
+        name: 'dynameicTable',
+        meta: {
+          title: '动态Table'
+        },
+        component: () => import('@/view/table/dynamicTable/index.vue')
+      },
+      {
+        path: '/table/editTable', 
+        name: 'editTable',
+        meta: {
+          title: '可编辑Table'
+        },
+        component: () => import('../view/table/editTable/index.tsx')
+      }
+    ]
+  },
+  {
     path: '/feat',
     name: 'feat',
     redirect: '/feat/icon',

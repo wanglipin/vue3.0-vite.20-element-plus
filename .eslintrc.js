@@ -1,5 +1,3 @@
-const { NONAME } = require("node:dns");
-
 module.exports = {
   env: {
     browser: true,
@@ -15,8 +13,13 @@ module.exports = {
     SharedArrayBuffer: 'readonly'
   },
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      jsx: true,
+    }
   },
   plugins: [
     'vue',

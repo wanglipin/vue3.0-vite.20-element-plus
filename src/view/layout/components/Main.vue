@@ -1,5 +1,5 @@
 <template>
-  <el-main style="background: pink;margin: 20px 10px 10px 10px;">
+  <el-main class="view-container">
     <router-view></router-view>
   </el-main>
 </template>
