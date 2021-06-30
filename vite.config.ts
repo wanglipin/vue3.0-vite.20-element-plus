@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import viteSvgIcons from 'vite-plugin-svg-icons' // 引入svgloader
-// https://vitejs.dev/config/
 export default defineConfig({
   base: './',
   // optimizeDeps: {
@@ -28,7 +27,7 @@ export default defineConfig({
     })
   ],
   alias: {
-    '@/': resolve(__dirname, '.', 'src')
+    '@': resolve(__dirname, '.', 'src')
   },
   server: {
     // port: 6666,
@@ -43,7 +42,7 @@ export default defineConfig({
     cors: true, // 为开发服务器配置 CORS。默认启用并允许任何源，传递一个 选项对象 来调整行为或设为 false 表示禁用。
   },
   build: {
-    base: '/',
+    base: './',
     target: 'modules',
     outDir: 'dist',
     assetsDir: 'static',

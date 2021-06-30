@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const Layout = () => import('@/view/layout/Index.vue')
 const App = () => import('@/view/layout/App.vue')
@@ -85,7 +85,7 @@ const routes: Array<RouteRecordRaw> = [
   }
 ]
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   linkActiveClass: 'is-active',  //TODO 这个是可以设置全局router菜单栏颜色
   routes,
   scrollBehavior: (to, from, savedPosition) => ({ left: 0, top: 0 }), // TODO 设置记录滚动条行为
