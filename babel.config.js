@@ -1,3 +1,8 @@
+/*
+ * @Author: O_Pin
+ * @Date: 2021-06-29 10:38:53
+ * @LastEditTime: 2021-06-30 14:53:38
+ */
 module.exports = {
   plugins: [
     [
@@ -9,7 +14,8 @@ module.exports = {
           // 如果你需要使用 scss 源文件，把文件结尾的扩展名从 `.css` 替换成 `.scss` 就可以了
           return `element-plus/lib/theme-chalk/${name}.css`;
         },
-      },
+      }
     ],
+  //  '@vue/babel-plugin-jsx' // @vue/babel-plugin-jsx插件 这样配置也可以，但是用是vite  所以就配置在vite里 
   ],
 };

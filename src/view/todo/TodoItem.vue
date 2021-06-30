@@ -14,7 +14,7 @@
     <div class="edit">
       <Edited
         v-todo-focus="todo == editedTodo"
-        v-model:todo-title="todo.title"
+        v-model.todoTitle="todo.title"
         @keyup.enter="doneEdit(todo)"
         @blur="doneEdit(todo)"
         @keyup.escape="cancel(todo)"
