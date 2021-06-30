@@ -1,7 +1,8 @@
-import { withModifiers,defineComponent, unref, onMounted, computed, reactive } from 'vue';
+import { defineComponent, reactive } from 'vue';
 
 export default defineComponent({
-  setup() {
+  inheritAttrs: false,
+  setup(props, { attrs }) {
     const state = reactive<any>({
       spanArr: [],
       pos: null,
@@ -38,31 +39,10 @@ export default defineComponent({
       }]
     });
     return () => (
-      <el-card className="box-card">
+      <el-card class="box-card">
         <el-table
-          // data="{ state.tableData }"
-          style="width: 100%; margin-top: 20px">
-          <el-table-column
-            prop="id"
-            label="ID"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="姓名">
-          </el-table-column>
-          <el-table-column
-            prop="amount1"
-            label="数值 1（元）">
-          </el-table-column>
-          <el-table-column
-            prop="amount2"
-            label="数值 2（元）">
-          </el-table-column>
-          <el-table-column
-            prop="amount3"
-            label="数值 3（元）">
-          </el-table-column>
+          { ...attrs }
+          border>
         </el-table>
       </el-card>
     );

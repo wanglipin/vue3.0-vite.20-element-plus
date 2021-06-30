@@ -69,7 +69,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '可编辑Table'
         },
-        component: () => import('../view/table/editTable/index.tsx')
+        component: () => import('../view/table/editTable/index.vue')
       }
     ]
   },
