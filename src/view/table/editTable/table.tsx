@@ -6,6 +6,11 @@ export default defineComponent({
   setup(props, { attrs }) {
     console.log(attrs, props.data) // 属性，方法都可以继承
     const state = reactive<any>({});
+    const slots = {
+      default: () => {
+        return <el-input/>
+      }
+    }
     return () => {
       return(
         <el-card class="box-card">
@@ -13,11 +18,13 @@ export default defineComponent({
             data={ props.data }
             { ...attrs }>
             {
-              props.data.map((item: any, index: number) => {
+              props.columns.map((item: any) => {
                 return (
                   <el-table-column
-                  { ...props.columns[index] }
+                  { ...item }
+                  v-slots={ slots }
                   >
+                  {/* {{ default: () => <el-input></el-input> }} */}
                   </el-table-column>
                 )
               })
