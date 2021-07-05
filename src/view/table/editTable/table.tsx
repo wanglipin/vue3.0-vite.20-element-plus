@@ -7,25 +7,31 @@ export default defineComponent({
   props: ['data', 'columns'],
   setup(props, { slots, attrs }) {
     const state = reactive<any>({});
+    const slots = {
+      default: () => {
+        return <el-input/>
+      }
+    }
     return () => {
       return(
-        <el-table
-          data={ props.data }
-          { ...attrs }>
-          {
-            props.columns.map((item: any) => {
-              return (
-                <el-table-column
-                { ...item }
-                >
-                  {{
-                    default: () => <span>{(item)}</span>
-                  }}
-                </el-table-column>
-              )
-            })
-          }
-        </el-table>
+        <el-card class="box-card">
+          <el-table
+            data={ props.data }
+            { ...attrs }>
+            {
+              props.columns.map((item: any) => {
+                return (
+                  <el-table-column
+                  { ...item }
+                  v-slots={ slots }
+                  >
+                  {/* {{ default: () => <el-input></el-input> }} */}
+                  </el-table-column>
+                )
+              })
+            }
+          </el-table>
+      </el-card>
       )
     }
   }

@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from "vue";
+import { defineComponent, reactive, toRefs, PropType } from "vue";
 import Edited from "./Edited.vue";
 
 interface TodoItem {
@@ -33,14 +33,14 @@ interface TodoItem {
   completed: boolean;
 }
 export default defineComponent({
-  name: "TodoItem",
+  name: 'TodoItem',
   props: {
     todo: {
-      type: Object,
+      type: Object as PropType<TodoItem>,
       required: true,
     },
   },
-  emits: ["removeTodo"],
+  emits: ['removeTodo'],
   components: { Edited },
   setup(props, { emit }) {
     const state = reactive({
