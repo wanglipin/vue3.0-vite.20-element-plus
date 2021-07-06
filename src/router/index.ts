@@ -3,7 +3,11 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 const Layout = () => import('@/view/layout/Index.vue')
 const App = () => import('@/view/layout/App.vue')
 
-const routes: Array<RouteRecordRaw> = [
+// 下边是扩展routes 中的额外扩展字段ts支持 => vue中 自带的RouteRecordRaw  可已经包括meta的ts支持，不用拓展
+export type AppRouteRouteRecordRaw = RouteRecordRaw & {
+  hidden?: Boolean
+}
+const routes: Array<AppRouteRouteRecordRaw> = [
   {
     path: '/',
     name: 'Login',
