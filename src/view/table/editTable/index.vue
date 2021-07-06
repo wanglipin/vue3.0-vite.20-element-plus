@@ -20,14 +20,14 @@ export default defineComponent ({
     const state = reactive({
       tableData: [
         {
-          id: '2',
-          name: '王小虎',
+          id: '1',
+          name: '王立品',
           amount1: '234',
           amount2: '3.2',
           amount3: 10
         }, {
           id: '2',
-          name: '王小虎',
+          name: '陈曦',
           amount1: '165',
           amount2: '4.43',
           amount3: 12

@@ -1,11 +1,11 @@
-
-import _Row from 'element-plus/lib/el-row';
-import { createSlots, defineComponent, reactive } from 'vue';
+import { defineComponent, reactive } from 'vue';
+import columns from './columns';
 
 export default defineComponent({
   inheritAttrs: false, // attrs 用这个值
   props: ['data', 'columns'],
-  setup(props, { slots, attrs }) {
+  components: { columns },
+  setup(props, { attrs }) {
     const state = reactive<any>({});
     const slots = {
       default: () => {
@@ -18,18 +18,9 @@ export default defineComponent({
           <el-table
             data={ props.data }
             { ...attrs }>
-            {
-              props.columns.map((item: any) => {
-                return (
-                  <el-table-column
-                  { ...item }
-                  v-slots={ slots }
-                  >
-                  {/* {{ default: () => <el-input></el-input> }} */}
-                  </el-table-column>
-                )
-              })
-            }
+            <columns columns={ props.columns }>
+              <div>11</div>
+            </columns>
           </el-table>
       </el-card>
       )
