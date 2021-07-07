@@ -7,20 +7,13 @@ export default defineComponent({
   components: { columns },
   setup(props, { attrs }) {
     const state = reactive<any>({});
-    const slots = {
-      default: () => {
-        return <el-input/>
-      }
-    }
     return () => {
       return(
         <el-card class="box-card">
           <el-table
             data={ props.data }
             { ...attrs }>
-            <columns columns={ props.columns }>
-              <div>11</div>
-            </columns>
+            <columns columns={ props.columns } v-slots={{ default: () => <span>1111111</span>}} />
           </el-table>
       </el-card>
       )

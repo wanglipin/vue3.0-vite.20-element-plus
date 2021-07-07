@@ -1,6 +1,6 @@
 import { isDevMode } from '@/utils/env';
 import { App, InjectionKey } from 'vue';
-import { createStore, Store } from 'vuex';
+import { createStore , Store } from 'vuex';
 
 // 为 store state 声明类型
 export type State = {
@@ -21,4 +21,4 @@ export function setupStore (app: App<Element>) {
   app.use(store, key)
 }
 
-export default store
+// export default store

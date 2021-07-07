@@ -1,22 +1,15 @@
-
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: ['columns'],
-  setup(props) {
-    const slots = {
-      default: (a: string) => {
-        return <>{a}</>
-      }
-    }
+  setup(props, { slots, attrs, emit}) {
     return () => {
       return(
         props.columns.map((item: any) => {
           return (
             <el-table-column
             { ...item }
-            v-slots={ slots }
-            >
+            >{ slots.default && slots.default('插槽參數')}
             </el-table-column>
           )
         })

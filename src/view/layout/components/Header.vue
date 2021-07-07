@@ -6,12 +6,13 @@
     <div class="header-item">
       <div class="header-item-icon">
         <el-dropdown class="demonstration" @command="handleCommand">
-          <span class="el-dropdown-link cursor-pointer">
+          <sapn class="el-dropdown-link cursor-pointer">
             <svg-icon
               name="zhongwenqiehuan-bai"
               size="16"
             />
-          </span>
+            简体
+          </sapn>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item command="zh">简体中文</el-dropdown-item>
@@ -60,7 +61,7 @@ export default defineComponent({
   },
   emits: ['toggleSideBar'],
   setup(props, { attrs, emit, slots}) {
-    const data = reactive({
+    const state = reactive({
       haderToggleSideBar: {
         iconeLeft: true 
       }
@@ -69,14 +70,14 @@ export default defineComponent({
       return false;
     };
     const toggleSideBar = () => {
-      data.haderToggleSideBar.iconeLeft = !data.haderToggleSideBar.iconeLeft
+      state.haderToggleSideBar.iconeLeft = !state.haderToggleSideBar.iconeLeft
       emit('toggleSideBar')
     }
     const handleCommand = (language: string) => {
       console.log(language, '111111111')
     }
     return {
-      ...toRefs(data),
+      ...toRefs(state),
       errorHandler,
       toggleSideBar,
       handleCommand

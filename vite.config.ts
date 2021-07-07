@@ -1,8 +1,3 @@
-/*
- * @Author: O_Pin
- * @Date: 2021-06-29 10:38:53
- * @LastEditTime: 2021-06-30 15:02:22
- */
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
