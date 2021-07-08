@@ -1,3 +1,9 @@
+<!--
+ * @Author: 王立品
+ * @Date: 2021-07-08 23:47:46
+ * @LastEditTime: 2021-07-09 01:18:51
+ * @FilePath: \vue3.0-vite.20-element-plus\src\view\layout\components\sidebar\Index.vue
+-->
 <template>
  <el-scrollbar class="aside-container-bar">
 	<el-aside :class="['aside-container']" :width="isCollapse ? '65px' : '260px'">
@@ -14,29 +20,14 @@
       :unique-opened="true"
       :default-active="activeData"
 		>
-			<div class="logo">
-				<img srcset="../../../../static/img/logo.9652507e.png" />
-				<h1 class="name" v-if="!isCollapse">Vue3.0(TS)V1</h1>
-			</div>
-			<template v-for="item in routers" :key="item.path">
-				<template v-if="!item.hidden">
-					<!-- 一级菜单 -->
-					<el-menu-item
-						:index="singleChild.path"
-						:route="{path: singleChild.path}"
-						v-if="hasOneChild(item.children, item)"
-					>
-						<i class="el-icon-menu"></i>
-						<template #title>
-							<span>
-								{{ singleChild.meta && singleChild.meta.title }}
-							</span>
-						</template>
-					</el-menu-item>
-					<!-- 二级菜单 支持递归无限级层级-->
-					<Main v-else :menu="item" :key="item.path"></Main>
-				</template>
-			</template>
+			<SidebarHeader :isCollapse="isCollapse"></SidebarHeader>
+			<sidebarItem 
+				v-for="route in routers"
+				:key="route.path"
+				:item="route"
+				:base-path="route.path"
+			>
+			</sidebarItem>
 		</el-menu>
     <slot></slot>
 	</el-aside>
@@ -46,7 +37,9 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import sidebarItem from './SidebarItem.vue'
 import Main from './Menu.vue';
+import SidebarHeader from './SidebarHeader.vue'
 
 export default defineComponent({
 	name: 'Aside',
@@ -55,7 +48,7 @@ export default defineComponent({
       type: Boolean,
     }
   },
-	components: { Main },
+	components: { sidebarItem, Main, SidebarHeader },
 	setup() {
 		const { options } = useRouter();
     const router = useRoute()

@@ -6,7 +6,7 @@
     <div class="header-item">
       <div class="header-item-icon">
         <el-dropdown class="demonstration" @command="handleCommand">
-          <sapn class="el-dropdown-link cursor-pointer">
+          <sapn class="el-dropdown-link cursor-pointer" style="display: inline-block;min-width: 48px;">
             <svg-icon
               name="zhongwenqiehuan-bai"
               size="16"

@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
-import LayoutAside from './components/aside/Index.vue';
+import LayoutAside from './components/sidebar/Index.vue';
 import Header from './components/Header.vue';
 import LatoutMain from './components/Main.vue';
 import breadCrumbs from './components/breadCrumbs/index.vue'
