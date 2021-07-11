@@ -6,7 +6,7 @@ import App from './App.vue';
 import svgIcon from './components/svgIcon/SvgIcoe.vue';
 import eleUse from './element';
 import router from './router';
-import './styles/element-variables.scss';
+import './styles/variables.module.scss';
 import { setupStore } from './store'
 
 

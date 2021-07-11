@@ -1,9 +1,14 @@
+/*
+ * @Author: 王立品
+ * @Date: 2021-07-08 23:47:46
+ * @LastEditTime: 2021-07-11 00:54:19
+ * @FilePath: \vue3.0-vite.20-element-plus\src\view\todo\ustTodos.ts
+ */
 import { reactive, watchEffect } from 'vue';
  
 const todoStorage = {
   fetch() {
     let todos = JSON.parse(localStorage.getItem("vue3_todos") || "[]");
-    console.log(todos, '?????????')
     todos.forEach((item: any, index: number) => {
       item.id = index + 1;
     });

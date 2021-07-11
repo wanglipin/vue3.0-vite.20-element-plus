@@ -1,3 +1,9 @@
+<!--
+ * @Author: 王立品
+ * @Date: 2021-07-08 23:47:46
+ * @LastEditTime: 2021-07-11 23:36:25
+ * @FilePath: \vue3.0-vite.20-element-plus\README.md
+-->
 # Vue 3 + Typescript + Vite
 
 This template should help get you started developing with Vue 3 and Typescript in Vite.
@@ -24,3 +30,6 @@ Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
 2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
 3. Open `src/main.ts` in VSCode
 4. Open the VSCode command palette 5. Search and run "Select TypeScript version" -> "Use workspace version"
+
+### prettier.config.js 设置格式化规则
+
