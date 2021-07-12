@@ -20,15 +20,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
-import Edited from './Edited.vue';
-import TodoItem from './TodoItem.vue';
-import Filter from './Filter.vue';
-import { useTodos } from './ustTodos';
-import { useFilters } from './useFilters';
+import { defineComponent, reactive, toRefs } from 'vue'
+import Edited from './Edited.vue'
+import TodoItem from './TodoItem.vue'
+import Filter from './Filter.vue'
+import { useTodos } from './ustTodos'
+import { useFilters } from './useFilters'
 
 interface Todos {
-	newTodo: string;
+	newTodo: string
 }
 
 export default defineComponent({
@@ -36,17 +36,17 @@ export default defineComponent({
 	components: { Edited, TodoItem, Filter },
 	setup() {
 		const todoState = reactive<Todos>({
-			newTodo: '',
-		});
-		const { todoList, addTodo, removeTodo } = useTodos(todoState);
-		const { filterState } = useFilters(todoList);
+			newTodo: ''
+		})
+		const { todoList, addTodo, removeTodo } = useTodos(todoState)
+		const { filterState } = useFilters(todoList)
 		return {
 			addTodo,
 			removeTodo,
 			...toRefs(todoState),
-			...toRefs(filterState),
-		};
-	},
-});
+			...toRefs(filterState)
+		}
+	}
+})
 </script>
 <style scoped lang="scss"></style>

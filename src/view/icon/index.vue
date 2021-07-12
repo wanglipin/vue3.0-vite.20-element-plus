@@ -1,15 +1,15 @@
 <template>icon</template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+import { defineComponent, reactive, toRefs } from 'vue'
 export default defineComponent({
 	name: '',
 	setup() {
-		const state = reactive({});
+		const state = reactive({})
 		return {
-			...toRefs(state),
-		};
-	},
-});
+			...toRefs(state)
+		}
+	}
+})
 </script>
 <style scoped lang="scss"></style>

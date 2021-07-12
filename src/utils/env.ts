@@ -7,15 +7,14 @@
 /**
  * @description: 开发模式
  */
-export const devMode = 'development';
+export const devMode = 'development'
 
- /**
-  * @description: 生产模式
-  */
-export const prodMode = 'production';
+/**
+ * @description: 生产模式
+ */
+export const prodMode = 'production'
 
-
-export const getEnv = (): string  => import.meta.env.MODE; // 获取环境（开发环境 或者 生产环境）
+export const getEnv = (): string => import.meta.env.MODE // 获取环境（开发环境 或者 生产环境）
 
 /**
  * @description: 是否是开发模式
@@ -23,12 +22,12 @@ export const getEnv = (): string  => import.meta.env.MODE; // 获取环境（开
  * @returns:
  * @example:
  */
- export const isDevMode = (): boolean => import.meta.env.DEV;
+export const isDevMode = (): boolean => import.meta.env.DEV
 
- /**
-  * @description: 是否是生产模式模式
-  * @param {type}
-  * @returns:
-  * @example:
-  */
- export const isProdMode = (): boolean => import.meta.env.PROD;
+/**
+ * @description: 是否是生产模式模式
+ * @param {type}
+ * @returns:
+ * @example:
+ */
+export const isProdMode = (): boolean => import.meta.env.PROD

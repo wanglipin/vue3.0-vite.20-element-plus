@@ -5,43 +5,43 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, computed } from 'vue';
-import type { CSSProperties } from 'vue';
+import { defineComponent, reactive, toRefs, computed } from 'vue'
+import type { CSSProperties } from 'vue'
 export default defineComponent({
 	name: 'SvgIcon',
 	props: {
 		prefix: {
 			type: String,
-			default: 'icon',
+			default: 'icon'
 		},
 		name: {
 			type: String,
-			requirde: true,
+			requirde: true
 		},
 		size: {
 			type: [Number, String],
-			default: 16,
-		},
+			default: 16
+		}
 	},
 	setup(props) {
-		const data = reactive({});
-		const symbolId = computed(() => `#${props.prefix}-${props.name}`);
+		const data = reactive({})
+		const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 		const getStyle = computed((): CSSProperties => {
-			const { size } = props;
-			let s = `${size}`;
-			s = `${s.replace('px', '')}px`;
+			const { size } = props
+			let s = `${size}`
+			s = `${s.replace('px', '')}px`
 			return {
 				width: s,
-				height: s,
-			};
-		});
+				height: s
+			}
+		})
 		return {
 			symbolId,
 			getStyle,
-			...toRefs(data),
-		};
-	},
-});
+			...toRefs(data)
+		}
+	}
+})
 </script>
 <style scoped lang="scss">
 .svg-icon {

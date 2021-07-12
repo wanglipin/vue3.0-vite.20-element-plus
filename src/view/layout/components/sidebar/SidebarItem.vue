@@ -39,8 +39,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
-import { resolvePath } from '../../../../utils/resolvePath';
+import { defineComponent, reactive, toRefs } from 'vue'
+import { resolvePath } from '../../../../utils/resolvePath'
 
 export default defineComponent({
 	name: 'SidebarItem',
@@ -48,38 +48,38 @@ export default defineComponent({
 		item: {
 			type: Object,
 			default: () => {
-				return {};
-			},
-		},
+				return {}
+			}
+		}
 	},
 	setup() {
 		const sate = reactive({
 			singleChild: {
 				meta: {
-					title: '',
+					title: ''
 				},
-				path: '',
+				path: ''
 			},
-			activeData: '',
-		});
+			activeData: ''
+		})
 		// 如果菜单栏只有一项则处理
 		const hasOneChild = (children: any, item: any) => {
 			// debugger
-			console.log(children, 'childrenchildren', item);
+			console.log(children, 'childrenchildren', item)
 			if (children?.length == 1 && !item.meta.alwaysShow) {
-				sate.singleChild = children[0];
-				return true;
+				sate.singleChild = children[0]
+				return true
 			} else {
-				return true;
+				return true
 			}
-		};
+		}
 		return {
 			hasOneChild,
 			resolvePath,
-			...toRefs(sate),
-		};
-	},
-});
+			...toRefs(sate)
+		}
+	}
+})
 </script>
 
 <style lang="sass" scoped></style>

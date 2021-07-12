@@ -12,31 +12,31 @@
 
 <script lang="ts">
 interface filtersItem {
-	title: string;
-	checked: boolean;
+	title: string
+	checked: boolean
 }
 
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 export default defineComponent({
 	name: 'FiltersItem',
 	props: ['filtersItem', 'modelValue'], //此处必须用modelValue 因为是默认的------你前边没有v-model：visibility=“XXX
 	emits: ['update:modelValue'],
 	setup(props, { emit }) {
 		const onChange = (tag: filtersItem): void => {
-			tag.checked = true;
+			tag.checked = true
 			// props.visibility = tag.title;
 			// 此处必须用modelValue 因为是默认的------你前边没有v-model：visibility=“XXX
-			emit('update:modelValue', tag.title);
+			emit('update:modelValue', tag.title)
 			props.filtersItem.forEach((item: filtersItem) => {
 				if (item.title != tag.title) {
-					item.checked = false;
+					item.checked = false
 				}
-			});
-		};
+			})
+		}
 		return {
-			onChange,
-		};
-	},
-});
+			onChange
+		}
+	}
+})
 </script>
 <style scoped lang="scss"></style>

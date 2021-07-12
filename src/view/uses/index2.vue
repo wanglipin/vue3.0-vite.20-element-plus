@@ -54,30 +54,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, onMounted } from 'vue';
-import { Graph, Shape, Addon, Dom } from '@antv/x6';
-import FlowGraph from '@/components/graph/index';
+import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import { Graph, Shape, Addon, Dom } from '@antv/x6'
+import FlowGraph from '@/components/graph/index'
 
 interface graphInstance {
-	container: HTMLElement;
-	width: Number;
-	height: Number;
+	container: HTMLElement
+	width: Number
+	height: Number
 }
 const getContainerSize = () => {
 	return {
 		width: document.body.offsetWidth - 590,
-		height: document.body.offsetHeight - 110,
-	};
-};
+		height: document.body.offsetHeight - 110
+	}
+}
 
 export default defineComponent({
 	name: '',
 	setup() {
 		const data = reactive({
 			data: {
-				graph: {},
-			},
-		});
+				graph: {}
+			}
+		})
 		// 创建X6实例
 		const initGraph = () => {
 			data.data.graph = new Graph({
@@ -89,7 +89,7 @@ export default defineComponent({
 				},
 				panning: {
 					enabled: true,
-					modifiers: 'shift', // 可以设置按钮拖动画布
+					modifiers: 'shift' // 可以设置按钮拖动画布
 				},
 				snapline: true, // 对齐线是移动节点排版的辅助工具
 				grid: {
@@ -100,34 +100,34 @@ export default defineComponent({
 					args: [
 						{
 							color: '#eee', // 主网格线颜色
-							thickness: 1, // 主网格线宽度
+							thickness: 1 // 主网格线宽度
 						},
 						{
 							color: '#ddd', // 次网格线颜色
 							thickness: 1, // 次网格线宽度
-							factor: 4, // 主次网格线间隔
-						},
-					],
+							factor: 4 // 主次网格线间隔
+						}
+					]
 				},
 				scroller: {
 					// 设置滚动
 					enabled: true,
 					pageVisible: true,
 					pageBreak: true,
-					pannable: false,
+					pannable: false
 				},
 				mousewheel: {
 					// 设置滚动缩放
 					enabled: true,
 					modifiers: ['ctrl', 'meta'],
 					minScale: 0.5,
-					maxScale: 2,
+					maxScale: 2
 				},
 				connecting: {
 					// 配置全局的连线规则
 					snap: {
 						// 距离节点或者连接桩 50px 时会触发自动吸附
-						radius: 50,
+						radius: 50
 					},
 					allowBlank: false,
 					allowMulti: true,
@@ -142,32 +142,32 @@ export default defineComponent({
 									strokeWidth: 1,
 									targetMarker: {
 										name: 'classic',
-										size: 8,
-									},
-								},
+										size: 8
+									}
+								}
 							},
 							router: {
-								name: 'manhattan',
-							},
-						});
+								name: 'manhattan'
+							}
+						})
 					},
 					validateConnection: ({
 						sourceView,
 						targetView,
 						sourceMagnet,
-						targetMagnet,
+						targetMagnet
 					}) => {
 						if (sourceView === targetView) {
-							return false;
+							return false
 						}
 						if (!sourceMagnet) {
-							return false;
+							return false
 						}
 						if (!targetMagnet) {
-							return false;
+							return false
 						}
-						return true;
-					},
+						return true
+					}
 				},
 				highlighting: {
 					magnetAvailable: {
@@ -176,56 +176,56 @@ export default defineComponent({
 							padding: 4,
 							attrs: {
 								strokeWidth: 4,
-								stroke: 'rgba(223,234,255)',
-							},
-						},
-					},
+								stroke: 'rgba(223,234,255)'
+							}
+						}
+					}
 				},
 				history: true, // 撤销/重做
 				clipboard: {
 					// 剪切板
-					enabled: true,
+					enabled: true
 				},
 				keyboard: {
 					// 启动快捷键
-					enabled: true,
+					enabled: true
 				},
 				embedding: {
 					// 通过embedding可以将一个节点拖动到另一个节点中，使其成为另一节点的子节点，默认禁用。
 					enabled: true,
 					findParent({ node }) {
-						const bbox = node.getBBox();
+						const bbox = node.getBBox()
 						return this.getNodes().filter((node) => {
 							// 只有 data.parent 为 true 的节点才是父节点
-							const data = node.getData<any>();
+							const data = node.getData<any>()
 							if (data && data.parent) {
-								const targetBBox = node.getBBox();
-								return bbox.isIntersectWithRect(targetBBox);
+								const targetBBox = node.getBBox()
+								return bbox.isIntersectWithRect(targetBBox)
 							}
-							return false;
-						});
-					},
-				},
-			});
+							return false
+						})
+					}
+				}
+			})
 			const resizeFn = () => {
 				// const { width, height } = getContainerSize()
 				// graph.resize(width, height)
-			};
-			resizeFn();
-			window.addEventListener('resize', resizeFn);
+			}
+			resizeFn()
+			window.addEventListener('resize', resizeFn)
 			return () => {
-				window.removeEventListener('resize', resizeFn);
-			};
-		};
+				window.removeEventListener('resize', resizeFn)
+			}
+		}
 		// 移出/移入 连接桩显示/隐藏
 		const changePortsVisible = (visible: boolean) => {
 			const ports = container.querySelectorAll(
 				'.x6-port-body'
-			) as NodeListOf<SVGAElement>;
+			) as NodeListOf<SVGAElement>
 			for (let i = 0, len = ports.length; i < len; i = i + 1) {
-				ports[i].style.visibility = visible ? 'visible' : 'hidden';
+				ports[i].style.visibility = visible ? 'visible' : 'hidden'
 			}
-		};
+		}
 		// 拖拽渲染方法
 		const dropRender = (node: any, target: any, event: any) => {
 			// X6拖拽插件
@@ -236,26 +236,26 @@ export default defineComponent({
 				validateNode(droppingNode, options) {
 					return droppingNode.shape === 'html'
 						? new Promise<boolean>((resolve) => {
-								const { draggingNode, draggingGraph } = options;
-								const view = draggingGraph.findView(draggingNode)!;
-								const contentElem = view.findOne('foreignObject > body > div');
-								Dom.addClass(contentElem, 'validating');
+								const { draggingNode, draggingGraph } = options
+								const view = draggingGraph.findView(draggingNode)!
+								const contentElem = view.findOne('foreignObject > body > div')
+								Dom.addClass(contentElem, 'validating')
 								setTimeout(() => {
-									Dom.removeClass(contentElem, 'validating');
-									resolve(true);
-								}, 3000);
+									Dom.removeClass(contentElem, 'validating')
+									resolve(true)
+								}, 3000)
 						  })
-						: true;
-				},
-			});
+						: true
+				}
+			})
 			// 开始拖拽
-			dnd.start(node, event);
-		};
+			dnd.start(node, event)
+		}
 		const handleMouseDown = (e: any) => {
-			const target = e.currentTarget;
-			const type = target.getAttribute('data-type');
-			const name = target.getAttribute('data-name');
-			let node = {};
+			const target = e.currentTarget
+			const type = target.getAttribute('data-type')
+			const name = target.getAttribute('data-name')
+			let node = {}
 			switch (type) {
 				case 'rect':
 					node = data.data.graph.createNode({
@@ -270,9 +270,9 @@ export default defineComponent({
 										circle: {
 											magnet: true,
 											r: 5,
-											stroke: 'rgb(49, 208, 198)',
-										},
-									},
+											stroke: 'rgb(49, 208, 198)'
+										}
+									}
 								},
 								{
 									group: 'top',
@@ -281,9 +281,9 @@ export default defineComponent({
 										circle: {
 											magnet: true,
 											r: 5,
-											stroke: 'rgb(49, 208, 198)',
-										},
-									},
+											stroke: 'rgb(49, 208, 198)'
+										}
+									}
 								},
 								{
 									group: 'bottom',
@@ -292,9 +292,9 @@ export default defineComponent({
 										circle: {
 											magnet: true,
 											r: 5,
-											stroke: 'rgb(49, 208, 198)',
-										},
-									},
+											stroke: 'rgb(49, 208, 198)'
+										}
+									}
 								},
 								{
 									group: 'bottom',
@@ -303,32 +303,32 @@ export default defineComponent({
 										circle: {
 											magnet: true,
 											r: 5,
-											stroke: 'rgb(49, 208, 198)',
-										},
-									},
-								},
+											stroke: 'rgb(49, 208, 198)'
+										}
+									}
+								}
 							],
 							groups: {
 								top: {
-									position: { name: 'top' },
+									position: { name: 'top' }
 								},
 								bottom: {
-									position: { name: 'bottom' },
-								},
-							},
+									position: { name: 'bottom' }
+								}
+							}
 						},
 						attrs: {
 							label: {
 								text: name,
-								fill: '#6a6c8a',
+								fill: '#6a6c8a'
 							},
 							body: {
 								stroke: '#31d0c6',
-								strokeWidth: 2,
-							},
-						},
-					});
-					break;
+								strokeWidth: 2
+							}
+						}
+					})
+					break
 				case 'circle':
 					node = data.data.graph.createNode({
 						width: 80,
@@ -339,7 +339,7 @@ export default defineComponent({
 								{ group: 'top', id: 10 },
 								{ group: 'right', id: 11 },
 								{ group: 'bottom', id: 12 },
-								{ group: 'left', id: 13 },
+								{ group: 'left', id: 13 }
 							],
 							groups: {
 								// 设置不同连接桩样式，in，out 名称
@@ -352,10 +352,10 @@ export default defineComponent({
 											stroke: 'rgb(49, 208, 198)',
 											style: {
 												// 隐藏连接桩
-												visibility: 'hidden',
-											},
-										},
-									},
+												visibility: 'hidden'
+											}
+										}
+									}
 								},
 								right: {
 									position: 'right',
@@ -366,10 +366,10 @@ export default defineComponent({
 											stroke: 'rgb(49, 208, 198)',
 											style: {
 												// 隐藏连接桩
-												visibility: 'hidden',
-											},
-										},
-									},
+												visibility: 'hidden'
+											}
+										}
+									}
 								},
 								bottom: {
 									position: 'bottom',
@@ -380,10 +380,10 @@ export default defineComponent({
 											stroke: 'rgb(49, 208, 198)',
 											style: {
 												// 隐藏连接桩
-												visibility: 'hidden',
-											},
-										},
-									},
+												visibility: 'hidden'
+											}
+										}
+									}
 								},
 								left: {
 									position: 'left',
@@ -394,29 +394,29 @@ export default defineComponent({
 											stroke: 'rgb(49, 208, 198)',
 											style: {
 												// 隐藏连接桩
-												visibility: 'hidden',
-											},
-										},
-									},
-								},
-							},
+												visibility: 'hidden'
+											}
+										}
+									}
+								}
+							}
 						},
 						html: () => {
-							const wrap = document.createElement('div');
-							wrap.style.width = '100%';
-							wrap.style.height = '100%';
-							wrap.style.display = 'flex';
-							wrap.style.color = 'red';
-							wrap.style.alignItems = 'center';
-							wrap.style.justifyContent = 'center';
-							wrap.style.border = '2px solid rgb(49, 208, 198)';
-							wrap.style.background = '#fff';
-							wrap.style.borderRadius = '100%';
-							wrap.innerText = name;
-							return wrap;
-						},
-					});
-					break;
+							const wrap = document.createElement('div')
+							wrap.style.width = '100%'
+							wrap.style.height = '100%'
+							wrap.style.display = 'flex'
+							wrap.style.color = 'red'
+							wrap.style.alignItems = 'center'
+							wrap.style.justifyContent = 'center'
+							wrap.style.border = '2px solid rgb(49, 208, 198)'
+							wrap.style.background = '#fff'
+							wrap.style.borderRadius = '100%'
+							wrap.innerText = name
+							return wrap
+						}
+					})
+					break
 				case 'rectHtml':
 					node = data.data.graph.createNode({
 						width: 60,
@@ -428,55 +428,55 @@ export default defineComponent({
 									circle: {
 										magnet: true,
 										r: 5,
-										stroke: 'rgb(49, 208, 198)',
-									},
-								},
-							},
+										stroke: 'rgb(49, 208, 198)'
+									}
+								}
+							}
 						],
 						html: () => {
-							const wraps = document.createElement('div');
+							const wraps = document.createElement('div')
 							// wrap.appendChild('<el-switch v-model="value" active-color="#13ce66" inactive-color="#ff4949"/>');
-							wraps.style.width = '100%';
-							wraps.style.height = '100%';
-							wraps.style.display = 'flex';
-							wraps.style.color = 'green';
-							wraps.style.alignItems = 'center';
-							wraps.style.justifyContent = 'center';
-							wraps.style.border = '2px solid rgb(49, 208, 198)';
-							wraps.style.background = '#fff';
+							wraps.style.width = '100%'
+							wraps.style.height = '100%'
+							wraps.style.display = 'flex'
+							wraps.style.color = 'green'
+							wraps.style.alignItems = 'center'
+							wraps.style.justifyContent = 'center'
+							wraps.style.border = '2px solid rgb(49, 208, 198)'
+							wraps.style.background = '#fff'
 							// wrap.style.borderRadius = '100%';
-							wraps.innerText = name;
-							return wraps;
-						},
-					});
-					break;
+							wraps.innerText = name
+							return wraps
+						}
+					})
+					break
 			}
 			// 开始拖拽渲染
-			dropRender(node, data.data.graph, e);
-		};
+			dropRender(node, data.data.graph, e)
+		}
 		const handClick = () => {
-			let dom = document.getElementById('container');
-			dom.requestFullscreen();
-			console.log(11111);
-		};
+			let dom = document.getElementById('container')
+			dom.requestFullscreen()
+			console.log(11111)
+		}
 		onMounted(() => {
-			initGraph();
+			initGraph()
 			// 监听鼠标移入事件
 			data.data.graph.on('node:mouseenter', () => {
-				changePortsVisible(true);
-			});
+				changePortsVisible(true)
+			})
 			// 监听鼠标移出
 			data.data.graph.on('node:mouseleave', () => {
-				changePortsVisible(false);
-			});
-		});
+				changePortsVisible(false)
+			})
+		})
 		return {
 			handleMouseDown,
 			handClick,
-			...toRefs(data),
-		};
-	},
-});
+			...toRefs(data)
+		}
+	}
+})
 </script>
 <style scoped lang="scss">
 .card-layout {

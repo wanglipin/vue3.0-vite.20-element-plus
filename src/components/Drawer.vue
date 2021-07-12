@@ -1,3 +1,9 @@
+<!--
+ * @Author: 王立品
+ * @Date: 2021-07-08 23:47:46
+ * @LastEditTime: 2021-07-12 09:13:28
+ * @FilePath: \vue3.0-vite.20-element-plus\src\components\Drawer.vue
+-->
 <template>
 	<div>
 		<div class="mask" v-if="drawer && modal" @click="maskClose"></div>
@@ -30,67 +36,67 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
 	name: 'Drawer',
 	props: {
 		title: {
 			// 标题
-			type: String,
+			type: String
 		},
 		drawer: {
-			// 必填 显示Drawer
+			// 必填显示Drawer
 			type: Boolean,
-			required: true,
+			required: true
 		},
 		showClose: {
 			// 是否展示关闭按钮
 			type: Boolean,
 			default: () => {
-				return true;
-			},
+				return true
+			}
 		},
 		withHeader: {
 			// 设置此项为false 控制是否显示 header 栏, 默认为 true, 当此项为 false 时, title attribute 和 title slot 均不生效
 			type: Boolean,
 			default: () => {
-				return true;
-			},
+				return true
+			}
 		},
 		modal: {
 			// 是否展示遮罩层
 			type: Boolean,
 			default: () => {
-				return true;
-			},
+				return true
+			}
 		},
 		beforeClose: {
 			//关闭回调函数
 			type: Function,
 			default: function () {
-				return 'Default function';
-			},
-		},
+				return 'Default function'
+			}
+		}
 	},
 	emits: ['update:drawer'], //当在 emits 选项中定义了原生事件 (如 click) 时，将使用组件中的事件替代原生事件侦听器。不设置则警告
-	setup(props: any, { attrs, emit, slots }) {
+	setup(props: any, { emit }) {
 		const settingHandle = () => {
-			emit('update:drawer', !props.drawer);
-		};
+			emit('update:drawer', !props.drawer)
+		}
 		const handleClose = () => {
-			props.beforeClose();
-		};
+			props.beforeClose()
+		}
 		const maskClose = () => {
-			settingHandle();
-		};
+			settingHandle()
+		}
 		return {
 			settingHandle,
 			handleClose,
-			maskClose,
-		};
-	},
-});
+			maskClose
+		}
+	}
+})
 </script>
 
 <style></style>

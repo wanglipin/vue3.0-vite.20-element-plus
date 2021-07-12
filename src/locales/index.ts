@@ -4,8 +4,8 @@ import ch from './ch'
 import en from './en'
 
 export default {
-  enLocale,
-  zhLocale,
-  ch,
-  en
+	enLocale,
+	zhLocale,
+	ch,
+	en
 }

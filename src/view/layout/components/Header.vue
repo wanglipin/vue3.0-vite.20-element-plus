@@ -60,40 +60,40 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+import { defineComponent, reactive, toRefs } from 'vue'
 
 export default defineComponent({
 	name: 'Header',
 	props: {
 		isCollapse: {
-			type: Boolean,
-		},
+			type: Boolean
+		}
 	},
 	emits: ['toggleSideBar'],
 	setup(props, { attrs, emit, slots }) {
 		const state = reactive({
 			haderToggleSideBar: {
-				iconeLeft: true,
-			},
-		});
+				iconeLeft: true
+			}
+		})
 		const errorHandler = () => {
-			return false;
-		};
+			return false
+		}
 		const toggleSideBar = () => {
-			state.haderToggleSideBar.iconeLeft = !state.haderToggleSideBar.iconeLeft;
-			emit('toggleSideBar');
-		};
+			state.haderToggleSideBar.iconeLeft = !state.haderToggleSideBar.iconeLeft
+			emit('toggleSideBar')
+		}
 		const handleCommand = (language: string) => {
-			console.log(language, '111111111');
-		};
+			console.log(language, '111111111')
+		}
 		return {
 			...toRefs(state),
 			errorHandler,
 			toggleSideBar,
-			handleCommand,
-		};
-	},
-});
+			handleCommand
+		}
+	}
+})
 </script>
 
 <style lang="scss">

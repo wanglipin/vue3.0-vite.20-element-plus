@@ -41,9 +41,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from 'vue';
-import { useRouter } from 'vue-router';
-import { ElMessage } from 'element-plus';
+import { defineComponent, reactive, ref, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 export default defineComponent({
 	name: 'Login',
@@ -51,31 +51,31 @@ export default defineComponent({
 		// HelloWorld
 	},
 	setup() {
-		const router = useRouter();
-		const ruleFormRef = ref<string>();
+		const router = useRouter()
+		const ruleFormRef = ref<string>()
 		const data = reactive<any>({
 			ruleForm: {
 				username: 'wanglipin',
-				pass: '123456',
-			},
-		});
+				pass: '123456'
+			}
+		})
 		const onSubmit = () => {
 			if (
 				data.ruleForm.username === 'wanglipin' &&
 				data.ruleForm.pass === '123456'
 			) {
-				router.push({ name: 'Home' });
+				router.push({ name: 'Home' })
 			} else {
-				ElMessage.error('账号密码错误.......');
+				ElMessage.error('账号密码错误.......')
 			}
-		};
+		}
 		return {
 			ruleFormRef,
 			...toRefs(data),
-			onSubmit,
-		};
-	},
-});
+			onSubmit
+		}
+	}
+})
 </script>
 
 <style lang="scss">

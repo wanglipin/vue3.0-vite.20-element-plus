@@ -1,4 +1,4 @@
 export type Todos = {
-  num: String,
-  id: Number
+	num: String
+	id: Number
 }

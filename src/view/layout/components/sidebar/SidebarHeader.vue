@@ -6,18 +6,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
 	name: 'SidebarHeader',
 	props: {
 		isCollapse: {
 			type: Boolean,
-			require: true,
-		},
+			require: true
+		}
 	},
-	setup() {},
-});
+	setup() {}
+})
 </script>
 
 <style lang="sass" scoped></style>

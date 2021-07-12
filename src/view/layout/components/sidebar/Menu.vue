@@ -1,7 +1,7 @@
 <!--
  * @Author: 王立品
  * @Date: 2021-07-08 23:47:46
- * @LastEditTime: 2021-07-11 02:17:31
+ * @LastEditTime: 2021-07-12 08:17:52
  * @FilePath: \vue3.0-vite.20-element-plus\src\view\layout\components\sidebar\Menu.vue
 -->
 <template>
@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { resolvePath } from '@/utils/resolvePath';
+import { defineComponent } from 'vue'
+// import { resolvePath } from '@/utils/resolvePath';
 
 export default defineComponent({
 	name: 'Menu',
@@ -37,20 +37,20 @@ export default defineComponent({
 		menu: {
 			type: Object,
 			default: () => {
-				return [];
-			},
-		},
+				return []
+			}
+		}
 	},
 	setup(props) {
 		const routerPath = (routePath: string): string => {
-			const fatherPath = props.menu.path;
-			console.log(fatherPath);
+			const fatherPath = props.menu.path
+			console.log(fatherPath)
 			// return resolvePath(fatherPath, routePath)
-			return '111';
-		};
+			return '111'
+		}
 		return {
-			routerPath,
-		};
-	},
-});
+			routerPath
+		}
+	}
+})
 </script>

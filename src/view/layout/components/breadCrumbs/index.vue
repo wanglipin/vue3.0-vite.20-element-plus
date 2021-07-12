@@ -30,28 +30,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, reactive, toRefs, computed } from 'vue'
+import { useRouter } from 'vue-router'
 export default defineComponent({
 	name: '',
 	setup() {
-		const router = useRouter();
-		const data = reactive({});
+		const router = useRouter()
+		const data = reactive({})
 		const breadcrumbList = computed(() => {
 			// [router.currentRoute.value.matched[1]] 如果只有一个一级菜单情况下返回第一个，第0个没有meta.title
 			return !router.currentRoute.value.matched[0].meta.title
 				? [router.currentRoute.value.matched[1]]
-				: router.currentRoute.value.matched;
-		});
+				: router.currentRoute.value.matched
+		})
 		const handleBreadcrumb = (row: string) => {
-			router.push(row);
-		};
+			router.push(row)
+		}
 		return {
 			handleBreadcrumb,
 			breadcrumbList,
-			...toRefs(data),
-		};
-	},
-});
+			...toRefs(data)
+		}
+	}
+})
 </script>
 <style scoped lang="scss"></style>

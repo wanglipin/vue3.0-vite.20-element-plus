@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, toRefs } from 'vue';
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 
 export default defineComponent({
 	name: 'dynamicTable',
@@ -30,75 +30,75 @@ export default defineComponent({
 					name: '王小虎',
 					amount1: '234',
 					amount2: '3.2',
-					amount3: 10,
+					amount3: 10
 				},
 				{
 					id: '1',
 					name: '王小虎',
 					amount1: '165',
 					amount2: '4.43',
-					amount3: 12,
+					amount3: 12
 				},
 				{
 					id: '2',
 					name: '王小虎',
 					amount1: '324',
 					amount2: '1.9',
-					amount3: 9,
+					amount3: 9
 				},
 				{
 					id: '2',
 					name: '王小虎',
 					amount1: '621',
 					amount2: '2.2',
-					amount3: 17,
+					amount3: 17
 				},
 				{
 					id: '2',
 					name: '王小虎',
 					amount1: '539',
 					amount2: '4.1',
-					amount3: 15,
-				},
-			],
-		});
+					amount3: 15
+				}
+			]
+		})
 		const getSpanArr = (data: any) => {
-			state.spanArr = [];
+			state.spanArr = []
 			for (var i = 0; i < data.length; i++) {
 				if (i === 0) {
-					state.spanArr.push(1);
-					state.pos = 0;
+					state.spanArr.push(1)
+					state.pos = 0
 				} else {
 					// 判断当前元素与上一个元素是否相同
 					if (data[i].id === data[i - 1].id) {
-						state.spanArr[state.pos] += 1;
-						state.spanArr.push(0);
+						state.spanArr[state.pos] += 1
+						state.spanArr.push(0)
 					} else {
-						state.spanArr.push(1);
-						state.pos = i;
+						state.spanArr.push(1)
+						state.pos = i
 					}
 				}
 			}
-		};
-		const objectSpanMethod = ({ row, column, rowIndex, columnIndex }: any) => {
+		}
+		const objectSpanMethod = ({ rowIndex, columnIndex }: any) => {
 			if (columnIndex === 0 || columnIndex === 1) {
-				const _row = state.spanArr[rowIndex];
-				const _col = _row > 0 ? 1 : 0;
+				const _row = state.spanArr[rowIndex]
+				const _col = _row > 0 ? 1 : 0
 				return {
 					rowspan: _row,
-					colspan: _col,
-				};
+					colspan: _col
+				}
 			}
-		};
+		}
 		onMounted(() => {
-			getSpanArr(state.tableData);
-		});
+			getSpanArr(state.tableData)
+		})
 		return {
 			getSpanArr,
 			objectSpanMethod,
-			...toRefs(state),
-		};
-	},
-});
+			...toRefs(state)
+		}
+	}
+})
 </script>
 <style scoped lang="scss"></style>

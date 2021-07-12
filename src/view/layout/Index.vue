@@ -64,13 +64,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
-import LayoutAside from './components/sidebar/Index.vue';
-import Header from './components/Header.vue';
-import LatoutMain from './components/Main.vue';
-import breadCrumbs from './components/breadCrumbs/index.vue';
-import Drawer from '@/components/Drawer.vue';
-import { ElMessageBox } from 'element-plus';
+import { defineComponent, reactive, toRefs } from 'vue'
+import LayoutAside from './components/sidebar/Index.vue'
+import Header from './components/Header.vue'
+import LatoutMain from './components/Main.vue'
+import breadCrumbs from './components/breadCrumbs/index.vue'
+import Drawer from '@/components/Drawer.vue'
+import { ElMessageBox } from 'element-plus'
 
 export default defineComponent({
 	name: 'Layout',
@@ -81,58 +81,58 @@ export default defineComponent({
 			drawer: false,
 			themeData: [
 				{
-					bgc: 'background-color: rgb(245, 34, 45);',
+					bgc: 'background-color: rgb(245, 34, 45);'
 				},
 				{
-					bgc: 'background-color: rgb(245, 34, 45);',
+					bgc: 'background-color: rgb(245, 34, 45);'
 				},
 				{
-					bgc: 'background-color: rgb(250, 219, 20)',
+					bgc: 'background-color: rgb(250, 219, 20)'
 				},
 				{
-					bgc: 'background-color: rgb(62, 175, 124);',
+					bgc: 'background-color: rgb(62, 175, 124);'
 				},
 				{
-					bgc: 'background-color: rgb(19, 194, 194);',
+					bgc: 'background-color: rgb(19, 194, 194);'
 				},
 				{
-					bgc: 'background-color: rgb(24, 144, 255)',
+					bgc: 'background-color: rgb(24, 144, 255)'
 				},
 				{
-					bgc: 'background-color: rgb(114, 46, 209);',
+					bgc: 'background-color: rgb(114, 46, 209);'
 				},
 				{
-					bgc: 'background-color: rgb(235, 47, 150);',
-				},
-			],
-		});
+					bgc: 'background-color: rgb(235, 47, 150);'
+				}
+			]
+		})
 		let toggleSideBar = () => {
-			data.isCollapse = !data.isCollapse;
-		};
+			data.isCollapse = !data.isCollapse
+		}
 		const settingHandle = () => {
-			data.drawer = !data.drawer;
-		};
+			data.drawer = !data.drawer
+		}
 		const handleClose = () => {
 			ElMessageBox.confirm('是否要关闭?', '提示', {
 				confirmButtonText: '确定',
 				cancelButtonText: '取消',
-				type: 'warning',
+				type: 'warning'
 			})
 				.then(() => {
-					settingHandle();
+					settingHandle()
 				})
 				.catch(() => {
-					console.log('关闭');
-				});
-		};
+					console.log('关闭')
+				})
+		}
 		return {
 			handleClose,
 			settingHandle,
 			toggleSideBar,
-			...toRefs(data),
-		};
-	},
-});
+			...toRefs(data)
+		}
+	}
+})
 </script>
 
 <style lang="scss">

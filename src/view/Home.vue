@@ -12,28 +12,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import HelloWorld from '../components/HelloWorld.vue';
-import { useI18n } from 'vue-i18n';
+import { defineComponent, ref } from 'vue'
+import HelloWorld from '../components/HelloWorld.vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
 	name: 'App',
 	components: {
-		HelloWorld,
+		HelloWorld
 	},
 	setup() {
-		const { locale } = useI18n();
-		const language = ref<string>('ch');
+		const { locale } = useI18n()
+		const language = ref<string>('ch')
 		const handleSelect = () => {
-			localStorage.setItem('lang', language.value);
-			locale.value = language.value;
-		};
+			localStorage.setItem('lang', language.value)
+			locale.value = language.value
+		}
 		return {
 			handleSelect,
-			language,
-		};
-	},
-});
+			language
+		}
+	}
+})
 </script>
 
 <style>

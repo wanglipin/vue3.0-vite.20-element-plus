@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
-import editTable from './table';
+import { defineComponent, reactive, toRefs } from 'vue'
+import editTable from './table'
 
 export default defineComponent({
 	name: '',
@@ -29,44 +29,44 @@ export default defineComponent({
 					name: '王立品',
 					amount1: '234',
 					amount2: '3.2',
-					amount3: 10,
+					amount3: 10
 				},
 				{
 					id: '2',
 					name: '陈曦',
 					amount1: '165',
 					amount2: '4.43',
-					amount3: 12,
-				},
+					amount3: 12
+				}
 			],
 			columns: [
 				{
 					prop: 'id',
 					label: 'ID',
-					width: '180',
+					width: '180'
 				},
 				{
 					prop: 'name',
-					label: '姓名',
+					label: '姓名'
 				},
 				{
 					prop: 'amount1',
-					label: '数值 1（元',
+					label: '数值 1（元'
 				},
 				{
 					prop: 'amount2',
-					label: '数值 2（元',
+					label: '数值 2（元'
 				},
 				{
 					prop: 'amount3',
-					label: '数值 3（元)',
-				},
-			],
-		});
+					label: '数值 3（元)'
+				}
+			]
+		})
 		return {
-			...toRefs(state),
-		};
-	},
-});
+			...toRefs(state)
+		}
+	}
+})
 </script>
 <style scoped lang="scss"></style>

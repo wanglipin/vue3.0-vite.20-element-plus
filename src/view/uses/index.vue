@@ -50,27 +50,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
+import { defineComponent, reactive, toRefs } from 'vue'
 
 interface tableType {
-	id: string | number;
-	name: string;
-	date: string;
-	children?: any;
-	address: string;
+	id: string | number
+	name: string
+	date: string
+	children?: any
+	address: string
 }
 export default defineComponent({
 	name: '',
 	computed: {
 		tagname({ tags }) {
-			return 1;
+			return 1
 		},
 		checked({ listId }) {
-			console.log(listId);
+			console.log(listId)
 			return function (id) {
-				return listId.includes(id);
-			};
-		},
+				return listId.includes(id)
+			}
+		}
 	},
 	setup() {
 		const data = reactive({
@@ -78,12 +78,12 @@ export default defineComponent({
 				{
 					id: 1,
 					date: '2016-05-02',
-					name: '小七',
+					name: '小七'
 				},
 				{
 					id: 2,
 					date: '2016-05-04',
-					name: '小八',
+					name: '小八'
 				},
 				{
 					id: 3,
@@ -94,62 +94,62 @@ export default defineComponent({
 							id: 31,
 							date: '2016-05-01',
 							name: '王立品',
-							checked: false,
+							checked: false
 						},
 						{
 							id: 32,
 							date: '2016-05-01',
 							name: '陈曦',
-							checked: false,
-						},
-					],
+							checked: false
+						}
+					]
 				},
 				{
 					id: 4,
 					date: '2016-05-03',
 					name: '小九',
-					address: '上海市普陀区金沙江路 1516 弄',
-				},
+					address: '上海市普陀区金沙江路 1516 弄'
+				}
 			],
 			tags: [],
-			listId: [],
-		});
+			listId: []
+		})
 		const handleCheckbox = (obj: any) => {
-			const index = data.listId.indexOf(obj.id);
+			const index = data.listId.indexOf(obj.id)
 			if (index > -1) {
-				data.tags.splice(data.listId.indexOf(obj.id), 1); // 删除当前点击项
-				data.listId.splice(data.listId.indexOf(obj.id), 1);
+				data.tags.splice(data.listId.indexOf(obj.id), 1) // 删除当前点击项
+				data.listId.splice(data.listId.indexOf(obj.id), 1)
 			} else {
-				data.tags.push(obj);
-				data.listId.push(obj.id);
+				data.tags.push(obj)
+				data.listId.push(obj.id)
 			}
-		};
+		}
 		const handleClose = (tag: number, index: number) => {
-			data.tags.splice(index, 1); // 删除当前点击项
-			data.listId.splice(index, 1);
+			data.tags.splice(index, 1) // 删除当前点击项
+			data.listId.splice(index, 1)
 			data.tableData.forEach((item) => {
 				if (item.children?.length) {
-					recursive(item.children, tag);
+					recursive(item.children, tag)
 				}
-			});
-		};
+			})
+		}
 		// 递归调用
 		const recursive = (children: any, tag: any) => {
 			children.forEach((item) => {
 				if (item.id == tag.id) {
-					item.checked = false;
+					item.checked = false
 				}
 				if (item.children?.length) {
-					recursive(item.children, tag);
+					recursive(item.children, tag)
 				}
-			});
-		};
+			})
+		}
 		return {
 			...toRefs(data),
 			handleCheckbox,
-			handleClose,
-		};
-	},
-});
+			handleClose
+		}
+	}
+})
 </script>
 <style scoped lang="scss"></style>
