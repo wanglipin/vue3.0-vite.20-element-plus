@@ -1,7 +1,7 @@
 /*
  * @Author: 王立品
  * @Date: 2021-07-08 23:47:46
- * @LastEditTime: 2021-07-12 10:08:01
+ * @LastEditTime: 2021-07-12 14:32:23
  * @FilePath: \vue3.0-vite.20-element-plus\prettier.config.js
  */
 module.exports = {
@@ -16,4 +16,4 @@ module.exports = {
 	jsxBracketSameLine: false,
 	jsxSingleQuote: false,
 	endOfLine: 'auto' // 不让prettier检测文件每行结束的格式. linux 和windoes git 拉去代码是空格不一样
-};
+}

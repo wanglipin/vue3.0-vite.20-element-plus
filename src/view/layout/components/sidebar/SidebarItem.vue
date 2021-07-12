@@ -1,37 +1,40 @@
 <!--
  * @Author: 王立品
  * @Date: 2021-07-09 00:43:26
- * @LastEditTime: 2021-07-11 21:58:04
- * @FilePath: \vue3.0-vite.20-element-plus\src\view\layout\components\sidebar\SidebarItem.vue
+ * @LastEditTime: 2021-09-05 23:48:44
+ * @FilePath: \filee:\learning\vue3.0-vite.20-element-plus\src\view\layout\components\sidebar\SidebarItem.vue
 -->
 <template>
 	<div v-if="!item.hidden">
-		<!-- 只有一個菜菜单 -->
+		<!-- 二级菜单 -->
 		<template v-if="hasOneChild(item.children, item)">
-			<el-menu-item
-				v-if="singleChild.meta"
-				:index="singleChild.path"
-				:route="{ path: singleChild.path }"
+			<app-link
+				v-if="resolvePath(singleChild.path)"
+				:to="resolvePath(singleChild.path)"
 			>
-				<i class="el-icon-menu"></i>
-				<template #title>
-					<span>
-						{{ singleChild.meta.title }}
-					</span>
-				</template>
-			</el-menu-item>
+				<el-menu-item :index="resolvePath(singleChild.path)">
+					<i class="el-icon-menu"></i>
+					<template #title>
+						<span>
+							{{ singleChild.meta.title }}
+						</span>
+					</template>
+				</el-menu-item>
+			</app-link>
 		</template>
-		<!-- 二级菜单 支持递归无限级层级-->
-		<el-submenu v-else :index="item.path" popper-append-to-body>
+		<el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
+			<!-- 一级菜单 -->
 			<template #title>
 				<i class="el-icon-location"></i>
-				<span>{{ item.meta && item.meta.title }}</span>
+				<span>{{ item.meta.title }}</span>
+				<span>{{ item.path }}</span>
 			</template>
+			<!-- 如果有二级菜单则递归 -->
 			<SidebarItem
 				v-for="child in item.children"
 				:key="child.path"
-				:item="child.item"
-				:base-path="child.path"
+				:item="child"
+				:base-path="resolvePath(item.path)"
 			>
 			</SidebarItem>
 		</el-submenu>
@@ -39,21 +42,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue'
-import { resolvePath } from '../../../../utils/resolvePath'
+import { computed, defineComponent, onMounted, reactive, toRefs } from 'vue'
+import { isExternalLink } from '@/utils/resolvePath'
+import appLink from './Link.vue'
+import path from 'path-browserify' // 浏览器支持的path方法
 
 export default defineComponent({
 	name: 'SidebarItem',
+	components: { appLink },
 	props: {
 		item: {
 			type: Object,
 			default: () => {
 				return {}
 			}
+		},
+		basePath: {
+			type: String,
+			default: ''
 		}
 	},
-	setup() {
-		const sate = reactive({
+	setup(props) {
+		const state = reactive({
 			singleChild: {
 				meta: {
 					title: ''
@@ -63,20 +73,31 @@ export default defineComponent({
 			activeData: ''
 		})
 		// 如果菜单栏只有一项则处理
-		const hasOneChild = (children: any, item: any) => {
-			// debugger
-			console.log(children, 'childrenchildren', item)
-			if (children?.length == 1 && !item.meta.alwaysShow) {
-				sate.singleChild = children[0]
-				return true
-			} else {
+		const hasOneChild = (children = [], item: any) => {
+			console.log('路由死循环了吗')
+			if (children.length == 1) {
+				state.singleChild = children[0] // 只有1个菜单的时候没有分组
 				return true
 			}
+			if (!children.length) {
+				state.singleChild = item // 二级菜单显示
+				return true
+			}
+			return false // 一级菜单显示
+		}
+		const resolvePath = (routePath: string) => {
+			if (isExternalLink(routePath)) {
+				return routePath
+			}
+			if (isExternalLink(props.basePath)) {
+				return props.basePath
+			}
+			return path.resolve(props.basePath, routePath)
 		}
 		return {
 			hasOneChild,
 			resolvePath,
-			...toRefs(sate)
+			...toRefs(state)
 		}
 	}
 })

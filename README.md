@@ -1,7 +1,7 @@
 <!--
  * @Author: 王立品
  * @Date: 2021-07-08 23:47:46
- * @LastEditTime: 2021-07-11 23:36:25
+ * @LastEditTime: 2021-07-12 12:51:36
  * @FilePath: \vue3.0-vite.20-element-plus\README.md
 -->
 # Vue 3 + Typescript + Vite
@@ -33,3 +33,36 @@ Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
 
 ### prettier.config.js 设置格式化规则
 
+### vsCode 编辑器中string.json中设置一下代码，可以手动格式化当前页代码
+"editor.tabSize": 2,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    {
+      1. 关闭codeActionsOnSave的格式代码
+      "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true // For eslint
+      }
+    
+      2. 更改为如下方式格式代码
+      "eslint.format.enable": true, // 使用Eslint作为文件的一种格式规范
+      "[javascript]": {
+          "editor.defaultFormatter": "dbaeumer.vscode-eslint" // 格式规范由prettier改为eslint
+      },
+      "[vue]": {
+          "editor.defaultFormatter": "dbaeumer.vscode-eslint" // 格式规范由prettier改为eslint
+      }
+    }]

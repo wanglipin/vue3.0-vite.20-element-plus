@@ -12,6 +12,7 @@
   "dependencies": {
     "@antv/x6": "^1.18.4",
     "element-plus": "^1.0.2-beta.48",
+    "path-browserify": "^1.0.1",
     "vue": "^3.0.5",
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.5",

@@ -27,12 +27,12 @@ const routes: Array<AppRouteRouteRecordRaw> = [
 		redirect: '/UserManagement/todo',
 		component: Layout,
 		meta: {
-			title: '导航1',
+			title: '示例',
 			alwaysShow: true
 		},
 		children: [
 			{
-				path: '/UserManagement/todo',
+				path: 'todo',
 				name: 'todo',
 				meta: {
 					title: 'todo'
@@ -40,7 +40,7 @@ const routes: Array<AppRouteRouteRecordRaw> = [
 				component: () => import('@/view/todo/index.vue')
 			},
 			{
-				path: '/UserManagement/User2',
+				path: 'User2',
 				name: 'User2',
 				meta: {
 					title: '编辑器'
@@ -55,12 +55,12 @@ const routes: Array<AppRouteRouteRecordRaw> = [
 		redirect: '/table/dynameicTable',
 		component: Layout,
 		meta: {
-			title: 'table',
+			title: '表格',
 			alwaysShow: true
 		},
 		children: [
 			{
-				path: '/table/dynameicTable',
+				path: 'dynameicTable',
 				name: 'dynameicTable',
 				meta: {
 					title: '动态Table'
@@ -68,12 +68,12 @@ const routes: Array<AppRouteRouteRecordRaw> = [
 				component: () => import('@/view/table/dynamicTable/index.vue')
 			},
 			{
-				path: '/table/editTable',
+				path: 'editTable',
 				name: 'editTable',
 				meta: {
 					title: '可编辑Table'
 				},
-				component: () => import('../view/table/editTable/index.vue')
+				component: () => import('@/view/table/editTable/index.vue')
 			}
 		]
 	},
@@ -88,7 +88,7 @@ const routes: Array<AppRouteRouteRecordRaw> = [
 		},
 		children: [
 			{
-				path: '/feat/icon',
+				path: 'icon',
 				name: 'icon',
 				meta: {
 					title: '图标'
