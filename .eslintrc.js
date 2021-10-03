@@ -1,9 +1,3 @@
-/*
- * @Author: 王立品
- * @Date: 2021-07-08 23:47:46
- * @LastEditTime: 2021-07-12 18:46:56
- * @FilePath: \vue3.0-vite.20-element-plus\.eslintrc.js
- */
 module.exports = {
 	env: {
 		// 设置js模块化类型
@@ -14,6 +8,7 @@ module.exports = {
 		amd: true
 	},
 	extends: [
+		// 'airbnb',
 		// 要下载下边三个插件哦
 		'plugin:vue/vue3-essential', //  vue3的核心規則
 		'eslint:recommended', // eslint的建议规则

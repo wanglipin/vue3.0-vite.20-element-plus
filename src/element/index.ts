@@ -29,7 +29,6 @@ import {
 	ElRow,
 	ElScrollbar,
 	ElSelect,
-	ElSubmenu,
 	ElTable,
 	ElTableColumn,
 	ElTag
@@ -55,7 +54,6 @@ const Element: Array<object> = [
 	ElContainer,
 	ElAside,
 	ElMenu,
-	ElSubmenu,
 	ElMenuItemGroup,
 	ElMenuItem,
 	ElRadioGroup,

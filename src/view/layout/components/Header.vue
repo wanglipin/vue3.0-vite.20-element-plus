@@ -11,13 +11,13 @@
 		<div class="header-item">
 			<div class="header-item-icon">
 				<el-dropdown class="demonstration" @command="handleCommand">
-					<sapn
+					<span
 						class="el-dropdown-link cursor-pointer"
 						style="display: inline-block; min-width: 48px"
 					>
 						<svg-icon name="zhongwenqiehuan-bai" size="16" />
 						简体
-					</sapn>
+					</span>
 					<template #dropdown>
 						<el-dropdown-menu>
 							<el-dropdown-item command="zh">简体中文</el-dropdown-item>

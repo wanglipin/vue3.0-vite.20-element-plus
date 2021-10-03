@@ -74,7 +74,6 @@ export default defineComponent({
 		})
 		// 如果菜单栏只有一项则处理
 		const hasOneChild = (children = [], item: any) => {
-			console.log('路由死循环了吗')
 			if (children.length == 1) {
 				state.singleChild = children[0] // 只有1个菜单的时候没有分组
 				return true

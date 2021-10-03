@@ -33,6 +33,8 @@ Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
 
 ### prettier.config.js 设置格式化规则
 
+### 设置了commit 提交规范 必须按照规则提交 如 feat： fix：等
+
 ### vsCode 编辑器中string.json中设置一下代码，可以手动格式化当前页代码
 "editor.tabSize": 2,
     "todo-tree.general.tags": [
