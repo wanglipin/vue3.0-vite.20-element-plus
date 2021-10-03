@@ -57,6 +57,7 @@
 import { defineComponent, reactive, toRefs, onMounted } from 'vue'
 import { Graph, Shape, Addon, Dom } from '@antv/x6'
 import FlowGraph from '@/components/graph/index'
+import container from 'element-plus/lib/components/container'
 
 interface graphInstance {
 	container: HTMLElement
@@ -221,6 +222,7 @@ export default defineComponent({
 		const changePortsVisible = (visible: boolean) => {
 			const ports = container.querySelectorAll(
 				'.x6-port-body'
+				// eslint-disable-next-line no-undef
 			) as NodeListOf<SVGAElement>
 			for (let i = 0, len = ports.length; i < len; i = i + 1) {
 				ports[i].style.visibility = visible ? 'visible' : 'hidden'

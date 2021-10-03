@@ -22,7 +22,7 @@
 				</el-menu-item>
 			</app-link>
 		</template>
-		<el-submenu v-else :index="resolvePath(item.path)" popper-append-to-body>
+		<el-sub-menu v-else :index="resolvePath(item.path)" popper-append-to-body>
 			<!-- 一级菜单 -->
 			<template #title>
 				<i class="el-icon-location"></i>
@@ -37,7 +37,7 @@
 				:base-path="resolvePath(item.path)"
 			>
 			</SidebarItem>
-		</el-submenu>
+		</el-sub-menu>
 	</div>
 </template>
 

@@ -5,7 +5,7 @@
  * @FilePath: \vue3.0-vite.20-element-plus\src\view\layout\components\sidebar\Menu.vue
 -->
 <template>
-	<el-submenu :index="menu.path">
+	<el-sub-menu :index="menu.path">
 		<template #title>
 			<i class="el-icon-location"></i>
 			<span>{{ menu.meta && menu.meta.title }}</span>
@@ -24,7 +24,7 @@
 				<Menu v-else :menu="item" :key="item.path"></Menu>
 			</el-menu-item-group>
 		</template>
-	</el-submenu>
+	</el-sub-menu>
 </template>
 
 <script lang="ts">
@@ -37,7 +37,7 @@ export default defineComponent({
 		menu: {
 			type: Object,
 			default: () => {
-				return []
+				return {}
 			}
 		}
 	},
@@ -45,7 +45,6 @@ export default defineComponent({
 		const routerPath = (routePath: string): string => {
 			const fatherPath = props.menu.path
 			console.log(fatherPath)
-			// return resolvePath(fatherPath, routePath)
 			return '111'
 		}
 		return {

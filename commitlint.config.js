@@ -15,6 +15,7 @@ const types = [
 
 module.exports = {
 	extends: ['@commitlint/config-conventional'],
+	//设置提交规则格式
 	rules: {
 		'type-empty': [2, 'never'], // type  不能为空
 		'type-enum': [2, 'always', types], // commit  type类别
