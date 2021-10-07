@@ -108,7 +108,7 @@ const routes: Array<AppRouteRouteRecordRaw> = [
 			{
 				path: '/navigation2',
 				name: 'nav2',
-				component: () => import('@/view/uses/index3.vue'),
+				component: () => import('@/view/componentsWheel/index.vue'),
 				meta: {
 					title: 'test-01'
 				}

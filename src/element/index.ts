@@ -1,3 +1,9 @@
+/*
+ * @Author: 王立品
+ * @Date: 2021-10-07 19:52:24
+ * @LastEditTime: 2021-10-07 20:57:19
+ * @FilePath: \filee:\learning\vue3.0-vite.20-element-plus\src\element\index.ts
+ */
 import {
 	ElAside,
 	ElAvatar,
@@ -32,9 +38,11 @@ import {
 	ElSubMenu,
 	ElTable,
 	ElTableColumn,
-	ElTag
+	ElTag,
+	ElTree
 } from 'element-plus'
 const Element: Array<object> = [
+	ElTree,
 	ElOption,
 	ElMain,
 	ElDrawer,

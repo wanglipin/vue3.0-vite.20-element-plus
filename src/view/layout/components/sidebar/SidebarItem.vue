@@ -1,7 +1,7 @@
 <!--
  * @Author: 王立品
  * @Date: 2021-07-09 00:43:26
- * @LastEditTime: 2021-09-05 23:48:44
+ * @LastEditTime: 2021-10-07 20:00:25
  * @FilePath: \filee:\learning\vue3.0-vite.20-element-plus\src\view\layout\components\sidebar\SidebarItem.vue
 -->
 <template>
@@ -27,7 +27,6 @@
 			<template #title>
 				<i class="el-icon-location"></i>
 				<span>{{ item.meta.title }}</span>
-				<span>{{ item.path }}</span>
 			</template>
 			<!-- 如果有二级菜单则递归 -->
 			<SidebarItem
