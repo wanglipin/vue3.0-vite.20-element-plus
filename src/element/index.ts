@@ -1,7 +1,13 @@
 /*
  * @Author: 王立品
  * @Date: 2021-10-07 19:52:24
- * @LastEditTime: 2021-10-07 20:57:19
+ * @LastEditTime: 2021-10-11 23:02:40
+ * @FilePath: \filee:\learning\vue3.0-vite.20-element-plus\src\element\index.ts
+ */
+/*
+ * @Author: 王立品
+ * @Date: 2021-10-07 19:52:24
+ * @LastEditTime: 2021-10-11 22:57:57
  * @FilePath: \filee:\learning\vue3.0-vite.20-element-plus\src\element\index.ts
  */
 import {
@@ -39,9 +45,11 @@ import {
 	ElTable,
 	ElTableColumn,
 	ElTag,
-	ElTree
+	ElTree,
+	ElIcon
 } from 'element-plus'
 const Element: Array<object> = [
+	ElIcon,
 	ElTree,
 	ElOption,
 	ElMain,

@@ -1,7 +1,7 @@
 <!--
  * @Author: O_Pin
  * @Date: 2021-07-01 13:57:16
- * @LastEditTime: 2021-10-07 23:06:45
+ * @LastEditTime: 2021-10-08 22:52:57
 -->
 <template>
 	<el-card class="box-card">
@@ -30,9 +30,31 @@
 					</el-option>
 				</el-select>
 			</el-col>
-			<el-col :span="12"
-				><div class="grid-content bg-purple-light"></div
-			></el-col>
+			<el-col :span="12">
+				<p>多选选择框树形组件</p>
+				<el-select
+					:model-value="selectValueArr"
+					multiple
+					placeholder="Select"
+					@blur="handleSelect"
+				>
+					<el-option
+						:value="allOptionValue"
+						:label="allLabel"
+						class="tree-container"
+					>
+						<el-tree
+							ref="treeRef"
+							node-key="id"
+							show-checkbox
+							:data="treeOptions"
+							highlight-current
+							:props="defaultProps"
+							@check-change="handledeptNodeClick"
+						/>
+					</el-option>
+				</el-select>
+			</el-col>
 		</el-row>
 	</el-card>
 </template>
@@ -43,9 +65,12 @@ import { computed, defineComponent, reactive, ref, toRefs } from 'vue'
 interface StateData {
 	selectValue: string
 	selectValueArray: any
+	selectValueArr: any
 	treeOptions: Array<any>
 	defaultProps: any
 	options: any
+	allOptionValue: any
+	allLabel: any
 }
 interface Option {
 	label: string
@@ -57,6 +82,9 @@ export default defineComponent({
 	setup() {
 		const treeRef = ref<any>(null)
 		const state = reactive<StateData>({
+			selectValueArr: [],
+			allOptionValue: [],
+			allLabel: [],
 			selectValue: '',
 			selectValueArray: [],
 			options: [
@@ -79,6 +107,10 @@ export default defineComponent({
 									id: 3
 								}
 							]
+						},
+						{
+							label: 'Level two 33330333',
+							id: 12
 						}
 					]
 				},
@@ -125,13 +157,19 @@ export default defineComponent({
 		const optionLabel = computed(() => {
 			return state.selectValueArray[0]?.label || ''
 		})
+		const handledeptNodeClick = (data: any, checked: boolean) => {
+			state.allOptionValue.push(data.id)
+			state.selectValueArr.push(data.label)
+			state.allLabel.push(data.label)
+		}
 		return {
 			...toRefs(state),
 			handleNodeClick,
 			handleSelect,
 			treeRef,
 			optionId,
-			optionLabel
+			optionLabel,
+			handledeptNodeClick
 		}
 	}
 })

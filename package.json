@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@antv/x6": "^1.18.4",
+    "@element-plus/icons": "0.0.11",
     "conventional-changelog-cli": "^2.1.1",
     "element-plus": "^1.1.0-beta.19",
     "path-browserify": "^1.0.1",

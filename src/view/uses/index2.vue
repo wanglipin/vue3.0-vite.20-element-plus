@@ -5,26 +5,26 @@
 				<el-menu class="editor-body" :uniqueOpened="true" text-color="#808080">
 					<el-submenu index="1">
 						<template #title>
-							<span>一家人</span>
+							<span>拓扑编辑器</span>
 						</template>
 						<el-menu-item-group>
 							<el-menu-item
 								index="1-1"
 								data-type="rect"
-								data-name="王立品"
+								data-name="开始"
 								@mousedown="handleMouseDown"
 							>
 								<img src="" alt="" />
-								<span>王立品</span>
+								<span>开始</span>
 							</el-menu-item>
 							<el-menu-item
 								index="1-2"
 								data-type="circle"
-								data-name="陈曦"
+								data-name="结束"
 								@mousedown="handleMouseDown"
 							>
 								<img src="" alt="" />
-								<span>陈曦</span>
+								<span>结束</span>
 							</el-menu-item>
 							<el-menu-item
 								index="1-3"
@@ -48,7 +48,23 @@
 					</el-submenu>
 				</el-menu>
 			</div>
-			<div id="container"></div>
+			<el-card class="box-card">
+				<template #header>
+					<div class="toolbar-content">
+						<div class="toolbar-group">
+							<div class="toolbar-group-item">
+								<!-- :disabled="!canUndo" -->
+								<el-button @click="onUndo"> 撤销 </el-button>
+							</div>
+							<div>
+								<!-- :disabled="!canRedo" -->
+								<el-button @click="onRedo"> 重做 </el-button>
+							</div>
+						</div>
+					</div>
+				</template>
+				<div id="container"></div>
+			</el-card>
 		</div>
 	</el-card>
 </template>
@@ -59,10 +75,22 @@ import { Graph, Shape, Addon, Dom } from '@antv/x6'
 import FlowGraph from '@/components/graph/index'
 import container from 'element-plus/lib/components/container'
 
-interface graphInstance {
-	container: HTMLElement
-	width: Number
-	height: Number
+// 背景色
+interface BackgroundOptions {
+	color?: string
+	image?: string
+	position?: CSS.BackgroundPositionProperty<{
+		x: number
+		y: number
+	}>
+	size?: CSS.BackgroundSizeProperty<{
+		width: number
+		height: number
+	}>
+	repeat?: CSS.BackgroundRepeatProperty
+	opacity?: number
+	quality?: number
+	angle?: number
 }
 const getContainerSize = () => {
 	return {
@@ -75,19 +103,19 @@ export default defineComponent({
 	name: '',
 	setup() {
 		const data = reactive({
-			data: {
-				graph: {}
-			}
+			graph: {},
+			canUndo: false,
+			canRedo: false
 		})
 		// 创建X6实例
 		const initGraph = () => {
-			data.data.graph = new Graph({
+			data.graph = new Graph({
 				container: document.getElementById('container') as HTMLDivElement,
-				width: 1000,
-				height: 800,
+				width: 1200,
+				height: 1200,
 				background: {
-					// color: '#fffbe6', // 设置画布背景颜色
-				},
+					// color: '#fffbe6' // 设置画布背景颜色
+				} as BackgroundOptions,
 				panning: {
 					enabled: true,
 					modifiers: 'shift' // 可以设置按钮拖动画布
@@ -220,13 +248,13 @@ export default defineComponent({
 		}
 		// 移出/移入 连接桩显示/隐藏
 		const changePortsVisible = (visible: boolean) => {
-			const ports = container.querySelectorAll(
-				'.x6-port-body'
-				// eslint-disable-next-line no-undef
-			) as NodeListOf<SVGAElement>
-			for (let i = 0, len = ports.length; i < len; i = i + 1) {
-				ports[i].style.visibility = visible ? 'visible' : 'hidden'
-			}
+			// const ports = container.querySelectorAll(
+			// 	'.x6-port-body'
+			// 	// eslint-disable-next-line no-undef
+			// ) as NodeListOf<SVGAElement>
+			// for (let i = 0, len = ports.length; i < len; i = i + 1) {
+			// 	ports[i].style.visibility = visible ? 'visible' : 'hidden'
+			// }
 		}
 		// 拖拽渲染方法
 		const dropRender = (node: any, target: any, event: any) => {
@@ -260,7 +288,7 @@ export default defineComponent({
 			let node = {}
 			switch (type) {
 				case 'rect':
-					node = data.data.graph.createNode({
+					node = data.graph.createNode({
 						width: 100,
 						height: 40,
 						ports: {
@@ -332,7 +360,7 @@ export default defineComponent({
 					})
 					break
 				case 'circle':
-					node = data.data.graph.createNode({
+					node = data.graph.createNode({
 						width: 80,
 						height: 80,
 						shape: 'html',
@@ -420,7 +448,7 @@ export default defineComponent({
 					})
 					break
 				case 'rectHtml':
-					node = data.data.graph.createNode({
+					node = data.graph.createNode({
 						width: 60,
 						height: 60,
 						shape: 'html',
@@ -454,25 +482,43 @@ export default defineComponent({
 					break
 			}
 			// 开始拖拽渲染
-			dropRender(node, data.data.graph, e)
+			dropRender(node, data.graph, e)
 		}
 		const handClick = () => {
 			let dom = document.getElementById('container')
 			dom.requestFullscreen()
 			console.log(11111)
 		}
+		const onUndo = () => {
+			data.graph.history.undo()
+		}
+		const onRedo = () => {
+			data.graph.history.redo()
+		}
 		onMounted(() => {
 			initGraph()
 			// 监听鼠标移入事件
-			data.data.graph.on('node:mouseenter', () => {
+			data.graph.on('node:mouseenter', () => {
 				changePortsVisible(true)
 			})
 			// 监听鼠标移出
-			data.data.graph.on('node:mouseleave', () => {
+			data.graph.on('node:mouseleave', () => {
 				changePortsVisible(false)
+			})
+			if (data.graph.isHistoryEnabled()) {
+				data.graph.disableHistory()
+			} else {
+				data.graph.enableHistory()
+			}
+			data.graph.history.on('change', () => {
+				console.log(data.graph.history)
+				data.canUndo = data.graph.history.canUndo()
+				data.canRedo = data.graph.history.canRedo()
 			})
 		})
 		return {
+			onUndo,
+			onRedo,
 			handleMouseDown,
 			handClick,
 			...toRefs(data)
@@ -485,6 +531,9 @@ export default defineComponent({
 	::v-deep .el-card__body {
 		//样式穿透
 		padding: 0;
+	}
+	::v-deep .el-card__header {
+		padding: 5px;
 	}
 }
 .editor-contaier {
@@ -505,6 +554,12 @@ export default defineComponent({
 	.is-active {
 		background: none !important;
 		color: #808080;
+	}
+}
+.toolbar-content {
+	display: flex;
+	.toolbar-group {
+		display: flex;
 	}
 }
 </style>
