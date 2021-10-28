@@ -12,6 +12,7 @@
     "format": "onchange 'test/**/*.js' 'src/**/*.js' 'src/**/*.vue' -- prettier --write {{changed}}"
   },
   "dependencies": {
+    "@antv/layout": "^0.1.19-beta.3",
     "@antv/x6": "^1.18.4",
     "@element-plus/icons": "0.0.11",
     "conventional-changelog-cli": "^2.1.1",

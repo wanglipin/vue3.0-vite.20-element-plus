@@ -74,6 +74,14 @@ const routes: Array<AppRouteRouteRecordRaw> = [
 					title: '可编辑Table'
 				},
 				component: () => import('@/view/table/editTable/index.vue')
+			},
+			{
+				path: 'abc',
+				name: 'abc',
+				meta: {
+					title: '单选Table'
+				},
+				component: () => import('@/view/uses/index.vue')
 			}
 		]
 	},
